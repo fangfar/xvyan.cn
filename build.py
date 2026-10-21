@@ -36,13 +36,12 @@ def layout(title, description, active, body, prefix="", article=False):
   <meta name="description" content="{escape(description, quote=True)}">
   <meta name="theme-color" content="#ffffff">
   <title>{escape(title)} · Xv Yan</title>
-  <link rel="icon" href="{prefix}assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="{prefix}assets/style.css">
 </head>
 <body>
   <a class="skip-link" href="#main">跳到正文</a>
   <header class="site-header wrap">
-    <a class="brand" href="{prefix or './'}" aria-label="Xv Yan 首页"><span class="brand-mark" aria-hidden="true">xv</span><span>Xv Yan</span></a>
+    <a class="brand" href="{prefix or './'}" aria-label="Xv Yan 首页">Xv Yan</a>
     <nav aria-label="主导航">{nav}</nav>
   </header>
   <main id="main" class="wrap{' reading-wrap' if article else ''}">{body}</main>
