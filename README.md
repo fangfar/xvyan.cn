@@ -21,7 +21,7 @@ py -m http.server 4173 --bind 127.0.0.1 --directory dist
 - 文章：编辑 `content/posts.json`，数组顺序就是显示顺序。`slug` 仅用小写英文、数字和短横线，且不可重复。
 - `body` 是作者自己维护的 HTML 正文，不接受未经审核的外部 HTML。标题、分类与摘要会自动转义。
 - `preview: true` 会显示预览文案提示。确认正文后设为 `false`，同时填写 `date`（例如 `2026-10-21`）。首页和列表中的预览提示文案也需在正式发布时更新。
-- 样式：`assets/style.css`。头像：`assets/avatar.webp`，已压缩并移除原照片元数据。
+- 样式：`assets/style.css`。网站不展示或发布个人头像。
 - 修改后重新运行 `py build.py`。
 
 ## 检查

@@ -101,6 +101,12 @@ class SiteTests(unittest.TestCase):
         self.assertFalse((site.OUT / "design").exists())
         self.assertFalse((site.OUT / "content").exists())
         self.assertFalse(list(site.OUT.rglob("*.jpg")))
+        self.assertFalse((site.OUT / "assets/avatar.webp").exists())
+        for doc in self.pages.values():
+            for tag, attrs in doc.tags:
+                if tag == "img":
+                    self.assertNotIn("avatar", attrs.get("src", "").lower())
+                    self.assertNotIn("头像", attrs.get("alt", ""))
 
     def test_deployment_domain_matches_repository(self):
         self.assertEqual((site.OUT / "CNAME").read_text(encoding="utf-8").strip(), "xvyan.cn")
