@@ -62,7 +62,7 @@ def project(heading="h3"):
     return f'''<section class="project" id="courselens" aria-labelledby="project-name"><div class="project-copy">
       <{heading} id="project-name">morrow</{heading}><p class="project-subtitle">课表与学习任务应用</p>
       <p class="muted">从日常需要出发，持续打磨使用体验。</p>
-      <a class="text-link" href="https://courselens.xvyan.cn/">访问官网 {EXTERNAL}</a>
+      <a class="text-link" href="https://morrow.xvyan.cn/">访问官网 {EXTERNAL}</a>
     </div>{calendar()}</section>'''
 
 
@@ -104,11 +104,11 @@ def build():
       <p class="page-note">这里先放了三篇预览文章，正式内容会慢慢补上。</p>'''
     write("articles/index.html", layout("文章", "开发记录、网站搭建与日常随笔。", "articles", articles, "../"))
     works = f'''<header class="page-intro"><h1>作品</h1><p>从一个小需要开始，把想法做出来。</p></header>{project("h2")}
-      <section class="work-notes prose"><h2>关于这个项目</h2><p>morrow 是我在做的 Android 应用，围绕课表与学习任务，持续打磨日常使用体验。</p><p>应用介绍、下载与使用说明都放在它自己的官网。这里记录项目，也记录做它的过程。</p><a class="text-link" href="https://github.com/fangfar/CourseLens-public">查看 GitHub 仓库 {EXTERNAL}</a></section>
+      <section class="work-notes prose"><h2>关于这个项目</h2><p>morrow 是我在做的 Android 应用，围绕课表与学习任务，持续打磨日常使用体验。</p><p>应用介绍、下载与使用说明都放在它自己的官网。这里记录项目，也记录做它的过程。</p><a class="text-link" href="https://github.com/fangfar/Morrow">查看 GitHub 仓库 {EXTERNAL}</a></section>
       <section class="other-work"><div class="section-heading"><h2>其他创作</h2><span class="heading-line"></span></div><p>也在尝试写故事、做科普动画。有可以分享的作品时，会放在这里。</p></section>'''
     write("works/index.html", layout("作品", "Xv Yan 的项目与创作，包含 morrow。", "works", works, "../"))
     about = f'''<header class="about-intro"><div><h1>关于我</h1><p>你好，我是 Xv Yan。</p></div></header>
-      <div class="prose about-prose"><p class="opening">做一些自己需要、也希望对别人有用的东西。</p><p>目前在做 morrow，也在尝试写故事、做科普动画。这个网站是放这些作品和记录的地方。</p><h2>关于这里</h2><p>这里会有开发中遇到的问题、做作品时的想法，也会有一点日常。不急着把每个想法都写成结论，先把值得留下的东西记下来。</p><h2>找到我</h2><p>可以在 GitHub 看看我的项目，也可以访问 morrow 官网了解应用。</p><div class="about-links"><a class="text-link" href="https://github.com/fangfar">GitHub {EXTERNAL}</a><a class="text-link" href="https://courselens.xvyan.cn/">morrow 官网 {EXTERNAL}</a></div></div>'''
+      <div class="prose about-prose"><p class="opening">做一些自己需要、也希望对别人有用的东西。</p><p>目前在做 morrow，也在尝试写故事、做科普动画。这个网站是放这些作品和记录的地方。</p><h2>关于这里</h2><p>这里会有开发中遇到的问题、做作品时的想法，也会有一点日常。不急着把每个想法都写成结论，先把值得留下的东西记下来。</p><h2>找到我</h2><p>可以在 GitHub 看看我的项目，也可以访问 morrow 官网了解应用。</p><div class="about-links"><a class="text-link" href="https://github.com/fangfar">GitHub {EXTERNAL}</a><a class="text-link" href="https://morrow.xvyan.cn/">morrow 官网 {EXTERNAL}</a></div></div>'''
     write("about/index.html", layout("关于", "关于 Xv Yan 和这个个人网站。", "about", about, "../"))
     for index, post in enumerate(posts):
         notice = '<aside class="preview-note">这是一篇用于预览版式的示例文章，正式内容待确认。</aside>' if post.get('preview') else ''

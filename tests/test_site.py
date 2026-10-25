@@ -111,6 +111,14 @@ class SiteTests(unittest.TestCase):
     def test_deployment_domain_matches_repository(self):
         self.assertEqual((site.OUT / "CNAME").read_text(encoding="utf-8").strip(), "xvyan.cn")
 
+    def test_morrow_links_use_current_domain_and_repository(self):
+        links = [link for doc in self.pages.values() for link in doc.links]
+        self.assertIn("https://morrow.xvyan.cn/", links)
+        self.assertIn("https://github.com/fangfar/Morrow", links)
+        for link in links:
+            self.assertNotIn("courselens.xvyan.cn", link)
+            self.assertNotIn("/CourseLens-public", link)
+
 
 if __name__ == "__main__":
     unittest.main()
