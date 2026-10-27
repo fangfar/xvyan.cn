@@ -58,7 +58,7 @@ class SiteTests(unittest.TestCase):
                         self.assertIn(unquote(url.fragment), target_doc.ids)
 
     def test_page_structure_and_no_external_runtime_dependencies(self):
-        self.assertEqual(len(self.pages), 8)
+        self.assertEqual(len(self.pages), len(site.load_posts()) + 5)
         for path, doc in self.pages.items():
             with self.subTest(page=str(path)):
                 self.assertEqual(sum(tag == "h1" for tag, _ in doc.tags), 1)
@@ -78,7 +78,10 @@ class SiteTests(unittest.TestCase):
     def test_every_preview_article_is_labeled(self):
         for post in site.load_posts():
             text = (site.OUT / "articles" / post["slug"] / "index.html").read_text(encoding="utf-8")
-            self.assertIn("正式内容待确认", text)
+            if post.get("preview"):
+                self.assertIn("正式内容待确认", text)
+            else:
+                self.assertNotIn("正式内容待确认", text)
             self.assertIn(post["title"], text)
 
     def test_metadata_is_escaped(self):

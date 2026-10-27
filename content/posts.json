@@ -1,5 +1,14 @@
 [
   {
+    "slug": "morrow-2-7-7",
+    "title": "Morrow 2.7.7：继续打磨日常使用",
+    "category": "开发记录",
+    "summary": "更新快递识别与课表显示，并记录仍在排查的调课验证问题。",
+    "date": "2026-10-27",
+    "preview": false,
+    "body": "<p>Morrow 2.7.7 已发布。这次更新主要处理日常使用中遇到的几个细节。</p><h2>快递与课表</h2><p>修复了默认短信应用可能不显示在快递通知来源中的问题，改进了截图里换行快递站名称的识别，并恢复了课表卡片的白色文字。</p><p>完整版内置图片识别；轻量版可以按需安装图片识别插件。下载与完整更新说明见 <a href=\"https://github.com/fangfar/Morrow/releases/tag/v2.7.7\">GitHub 发布页面</a>。</p><h2>还在排查</h2><p>调课功能的设备专项验证仍有未通过项，原因正在排查。</p>"
+  },
+  {
     "slug": "courselens-from-a-small-need",
     "title": "morrow：从自己的需要开始",
     "category": "开发记录",

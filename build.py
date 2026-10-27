@@ -1,4 +1,5 @@
 """Build the local preview using only Python's standard library."""
+import hashlib
 import json
 import re
 import shutil
@@ -27,6 +28,7 @@ def load_posts():
 
 
 def layout(title, description, active, body, prefix="", article=False):
+    style_version = hashlib.sha256((ROOT / "assets/style.css").read_bytes()).hexdigest()[:12]
     nav = "".join(f'<a href="{prefix}{path or "./"}"' + (' aria-current="page"' if key == active else '') + f'>{label}</a>' for key, label, path in NAV)
     return f'''<!doctype html>
 <html lang="zh-CN">
@@ -36,7 +38,7 @@ def layout(title, description, active, body, prefix="", article=False):
   <meta name="description" content="{escape(description, quote=True)}">
   <meta name="theme-color" content="#ffffff">
   <title>{escape(title)} · Xv Yan</title>
-  <link rel="stylesheet" href="{prefix}assets/style.css">
+  <link rel="stylesheet" href="{prefix}assets/style.css?v={style_version}">
 </head>
 <body>
   <a class="skip-link" href="#main">跳到正文</a>
@@ -61,7 +63,7 @@ def calendar():
 def project(heading="h3"):
     return f'''<section class="project" id="courselens" aria-labelledby="project-name"><div class="project-copy">
       <{heading} id="project-name">morrow</{heading}><p class="project-subtitle">课表与学习任务应用</p>
-      <p class="muted">从日常需要出发，持续打磨使用体验。</p>
+      <p class="muted">课表、任务与快递，整理在一个应用里。</p>
       <a class="text-link" href="https://morrow.xvyan.cn/">访问官网 {EXTERNAL}</a>
     </div>{calendar()}</section>'''
 
@@ -101,10 +103,10 @@ def build():
     write("index.html", layout("首页", "Xv Yan 的个人网站与博客，记录开发、分享作品，也写一点日常。", "home", home))
     articles = f'''<header class="page-intro"><h1>文章</h1><p>记录做过的事，和一路上的想法。</p></header>
       <section aria-label="文章列表">{rows(posts, '../', True)}</section>
-      <p class="page-note">这里先放了三篇预览文章，正式内容会慢慢补上。</p>'''
+      <p class="page-note">部分文章为预览文案，正式内容待确认。</p>'''
     write("articles/index.html", layout("文章", "开发记录、网站搭建与日常随笔。", "articles", articles, "../"))
     works = f'''<header class="page-intro"><h1>作品</h1><p>从一个小需要开始，把想法做出来。</p></header>{project("h2")}
-      <section class="work-notes prose"><h2>关于这个项目</h2><p>morrow 是我在做的 Android 应用，围绕课表与学习任务，持续打磨日常使用体验。</p><p>应用介绍、下载与使用说明都放在它自己的官网。这里记录项目，也记录做它的过程。</p><a class="text-link" href="https://github.com/fangfar/Morrow">查看 GitHub 仓库 {EXTERNAL}</a></section>
+      <section class="work-notes prose"><h2>关于这个项目</h2><p>morrow 是我在做的 Android 应用，把课表、学习任务和快递记录放在一起。</p><p>应用介绍、下载与使用说明都放在它自己的官网。这里记录项目，也记录做它的过程。</p><a class="text-link" href="https://github.com/fangfar/Morrow">查看 GitHub 仓库 {EXTERNAL}</a></section>
       <section class="other-work"><div class="section-heading"><h2>其他创作</h2><span class="heading-line"></span></div><p>也在尝试写故事、做科普动画。有可以分享的作品时，会放在这里。</p></section>'''
     write("works/index.html", layout("作品", "Xv Yan 的项目与创作，包含 morrow。", "works", works, "../"))
     about = f'''<header class="about-intro"><div><h1>关于我</h1><p>你好，我是 Xv Yan。</p></div></header>
