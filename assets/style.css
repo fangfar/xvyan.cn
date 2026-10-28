@@ -79,3 +79,14 @@ body{background:#f9fbfd}
  @keyframes calendar-arrive{from{opacity:.75;transform:translateY(14px) rotate(-1deg)}to{opacity:1;transform:rotate(-2deg)}}
  @media(max-width:760px){@keyframes calendar-arrive{from{opacity:.75;transform:translateY(10px)}to{opacity:1;transform:none}}}
 }
+
+.friend-card{display:grid;grid-template-columns:250px 1fr;gap:34px;align-items:center;margin:0 0 20px;padding:30px;background:#eaf2f8;border-radius:12px}
+.friend-card img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;border-radius:8px}
+.friend-card .friend-title{font-family:Georgia,'Songti SC',serif;font-size:26px;font-weight:500;line-height:1.5;margin-bottom:10px}
+.friend-card .friend-text{font-size:16px;line-height:1.9;color:var(--muted);margin-bottom:0}
+@media(max-width:760px){
+ .friend-card{grid-template-columns:1fr;gap:20px;align-items:start;padding:22px}
+ .friend-card img{max-width:280px}
+ .friend-card .friend-title{font-size:22px}
+ .friend-card .friend-text{font-size:16px}
+}
