@@ -74,7 +74,7 @@ class SiteTests(unittest.TestCase):
                         self.assertIn("alt", attrs)
                         self.assertIn("width", attrs)
                         self.assertIn("height", attrs)
-                    if tag in ("img", "link"):
+                    if tag == "img" or (tag == "link" and attrs.get("rel") == "stylesheet"):
                         self.assertFalse(urlsplit(attrs.get("src", attrs.get("href", ""))).scheme)
 
     def test_every_preview_article_is_labeled(self):
@@ -86,6 +86,20 @@ class SiteTests(unittest.TestCase):
                 self.assertNotIn("正式内容待确认", text)
             self.assertIn(post["title"], text)
 
+    def test_articles_separate_published_and_previews(self):
+        post = site.load_posts()[0]
+        published = dict(post, slug="published", title="Published", date='2026-01-01')
+        preview = dict(post, slug="preview", title="Preview", preview=True)
+        with TemporaryDirectory() as folder, patch.object(site, "OUT", Path(folder)), patch.object(site, "load_posts", return_value=[preview, published]):
+            site.build()
+            listing = (site.OUT / "index.html").read_text(encoding="utf-8")
+            self.assertLess(listing.index('id="published-title"'), listing.index('Published'))
+            self.assertLess(listing.index('id="previews-title"'), listing.index('Preview'))
+            self.assertLess(listing.index('Published'), listing.index('id="previews-title"'))
+            article = (site.OUT / "articles/published/index.html").read_text(encoding="utf-8")
+            self.assertIn('<time datetime="2026-01-01">2026-01-01</time>', article)
+            self.assertIn('继续阅读 · 预览文章', article)
+
     def test_metadata_is_escaped(self):
         result = site.layout('<script>alert(1)</script>', '" onload="bad', "home", "<h1>正文</h1>")
         self.assertNotIn('<title><script>', result)
@@ -93,7 +107,7 @@ class SiteTests(unittest.TestCase):
         self.assertIn('&quot; onload=&quot;bad', result)
 
     def test_stars_page_uses_snapshot_and_escapes_descriptions(self):
-        links = self.pages[site.OUT / "stars/index.html"].links
+        links = self.pages[site.OUT / "index.html"].links
         for repo in site.load_stars()["repositories"]:
             self.assertIn("https://github.com/" + repo["name"], links)
         stars = {"updated": "2026-11-04", "repositories": [
@@ -102,8 +116,8 @@ class SiteTests(unittest.TestCase):
         ]}
         with TemporaryDirectory() as folder, patch.object(site, "OUT", Path(folder)), patch.object(site, "load_stars", return_value=stars):
             site.build()
-            page = (site.OUT / "stars/index.html").read_text(encoding="utf-8")
-            self.assertIn('共 2 个仓库', page)
+            page = (site.OUT / "index.html").read_text(encoding="utf-8")
+            self.assertIn('共 2 个项目', page)
             self.assertIn('https://github.com/example/project', page)
             self.assertIn('&lt;script&gt;bad&lt;/script&gt;', page)
             self.assertNotIn('<script>bad</script>', page)
@@ -117,6 +131,43 @@ class SiteTests(unittest.TestCase):
                 (root / "content/stars.json").write_text(json.dumps(data), encoding="utf-8")
                 with patch.object(site, "ROOT", root), self.assertRaises(ValueError):
                     site.load_stars()
+
+    def test_navigation_targets_home_sections_and_legacy_urls_redirect(self):
+        home = self.pages[site.OUT / "index.html"]
+        for key, _ in site.NAV:
+            self.assertIn(key, home.ids)
+            self.assertIn("#" + key, home.links)
+            if key != "home":
+                old = self.pages[site.OUT / key / "index.html"]
+                self.assertTrue(any(tag == "meta" and attrs.get("http-equiv") == "refresh"
+                                    and attrs.get("content") == f"0;url=../#{key}"
+                                    for tag, attrs in old.tags))
+        for post in site.load_posts():
+            article = self.pages[site.OUT / "articles" / post["slug"] / "index.html"]
+            self.assertIn("../../#articles", article.links)
+            self.assertIn("../../#about", article.links)
+
+    def test_chinese_intros_and_new_stars_survive_sync(self):
+        intros_path = ROOT / "content/star-intros.json"
+        original = intros_path.read_bytes()
+        intros = json.loads(original)
+        for name, intro in intros.items():
+            with self.subTest(repo=name):
+                self.assertLessEqual(len(intro), 64)
+                self.assertRegex(intro, r"[\u4e00-\u9fff]")
+        with TemporaryDirectory() as folder:
+            root = Path(folder)
+            (root / "content").mkdir()
+            (root / "content/star-intros.json").write_bytes(original)
+            response = io.BytesIO(json.dumps([{"full_name": "openai/codex", "description": "Changed upstream"},
+                                            {"full_name": "example/new", "description": "x" * 10000}]).encode())
+            with patch.object(sync_stars, "urlopen", return_value=response):
+                sync_stars.sync(root / "content/stars.json")
+            with patch.object(site, "ROOT", root):
+                repos = site.load_stars()["repositories"]
+            self.assertEqual(repos[0]["description"], intros["openai/codex"])
+            self.assertEqual(repos[1]["description"], "中文简介待整理，可前往仓库查看项目说明。")
+            self.assertEqual((root / "content/star-intros.json").read_bytes(), original)
 
     def test_sync_fetches_all_pages_and_preserves_snapshot_on_failure(self):
         first = [{"full_name": f"owner/repo-{i}", "description": None} for i in range(100)]
