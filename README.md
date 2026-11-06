@@ -2,7 +2,7 @@
 
 个人网站与博客，记录开发、分享作品，也写一点日常。
 
-网站地址：[xvyan.cn](https://xvyan.cn/)。包含首页、文章列表与详情、作品、关于、404 页面。部分文章为标注过的预览文案，正式内容待确认或替换。
+网站地址：[xvyan.cn](https://xvyan.cn/)。包含首页、文章列表与详情、作品、收藏、关于、404 页面。部分文章为标注过的预览文案，正式内容待确认或替换。
 
 ## 本地查看
 
@@ -21,6 +21,7 @@ py -m http.server 4173 --bind 127.0.0.1 --directory dist
 - 文章：编辑 `content/posts.json`，数组顺序就是显示顺序。`slug` 仅用小写英文、数字和短横线，且不可重复。
 - `body` 是作者自己维护的 HTML 正文，不接受未经审核的外部 HTML。标题、分类与摘要会自动转义。
 - `preview: true` 会显示预览文案提示。确认正文后设为 `false`，同时填写 `date`（例如 `2026-10-21`）。所有预览文章转为正式内容后，需移除列表中的预览提示。
+- 收藏：运行 `py sync_stars.py` 从 GitHub 更新 `content/stars.json`，再重新构建。本地可选设置 `GITHUB_TOKEN` 避免匿名访问限额；获取失败时原快照不变。
 - 样式：`assets/style.css`。网站不展示或发布个人头像。
 - 修改后重新运行 `py build.py`。
 
@@ -34,7 +35,7 @@ py -m unittest discover -s tests -v
 
 ## 自动部署
 
-推送到 `main` 后，GitHub Actions 使用 Python 3.12 执行检查并构建，仅将 `dist/` 发布到 GitHub Pages。检查失败不会部署。也可以在 Actions 页面手动运行工作流。
+推送到 `main` 后，GitHub Actions 使用 Python 3.12 同步公开星标、执行检查并构建，仅将 `dist/` 发布到 GitHub Pages。工作流还会每天运行一次，也可以在 Actions 页面手动运行。同步或检查失败不会部署，原线上页面保留。自动同步更新部署内容，不修改仓库中的快照文件。
 
 自定义域名为 `xvyan.cn`，在仓库 Settings → Pages 管理。仓库中保留 `CNAME`，构建时复制到发布目录。
 

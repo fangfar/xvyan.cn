@@ -1,4 +1,5 @@
 import importlib.util
+import io
 import json
 import unittest
 from html.parser import HTMLParser
@@ -11,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location("site_builder", ROOT / "build.py")
 site = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(site)
+import sync_stars
 
 
 class Document(HTMLParser):
@@ -58,7 +60,7 @@ class SiteTests(unittest.TestCase):
                         self.assertIn(unquote(url.fragment), target_doc.ids)
 
     def test_page_structure_and_no_external_runtime_dependencies(self):
-        self.assertEqual(len(self.pages), len(site.load_posts()) + 5)
+        self.assertEqual(len(self.pages), len(site.load_posts()) + 6)
         for path, doc in self.pages.items():
             with self.subTest(page=str(path)):
                 self.assertEqual(sum(tag == "h1" for tag, _ in doc.tags), 1)
@@ -89,6 +91,50 @@ class SiteTests(unittest.TestCase):
         self.assertNotIn('<title><script>', result)
         self.assertIn('&lt;script&gt;', result)
         self.assertIn('&quot; onload=&quot;bad', result)
+
+    def test_stars_page_uses_snapshot_and_escapes_descriptions(self):
+        links = self.pages[site.OUT / "stars/index.html"].links
+        for repo in site.load_stars()["repositories"]:
+            self.assertIn("https://github.com/" + repo["name"], links)
+        stars = {"updated": "2026-11-04", "repositories": [
+            {"name": "example/project", "description": '<script>bad</script>'},
+            {"name": "example/empty", "description": ''},
+        ]}
+        with TemporaryDirectory() as folder, patch.object(site, "OUT", Path(folder)), patch.object(site, "load_stars", return_value=stars):
+            site.build()
+            page = (site.OUT / "stars/index.html").read_text(encoding="utf-8")
+            self.assertIn('共 2 个仓库', page)
+            self.assertIn('https://github.com/example/project', page)
+            self.assertIn('&lt;script&gt;bad&lt;/script&gt;', page)
+            self.assertNotIn('<script>bad</script>', page)
+
+    def test_invalid_or_duplicate_star_names_rejected(self):
+        for names in (["example/../bad"], ["example/.."], ["example/repo", "Example/Repo"]):
+            with self.subTest(names=names), TemporaryDirectory() as folder:
+                root = Path(folder)
+                (root / "content").mkdir()
+                data = {"updated": "2026-11-04", "repositories": [{"name": name, "description": ""} for name in names]}
+                (root / "content/stars.json").write_text(json.dumps(data), encoding="utf-8")
+                with patch.object(site, "ROOT", root), self.assertRaises(ValueError):
+                    site.load_stars()
+
+    def test_sync_fetches_all_pages_and_preserves_snapshot_on_failure(self):
+        first = [{"full_name": f"owner/repo-{i}", "description": None} for i in range(100)]
+        last = [{"full_name": "owner/last", "description": "Last"}]
+        response = lambda data: io.BytesIO(json.dumps(data).encode("utf-8"))
+        with TemporaryDirectory() as folder:
+            target = Path(folder) / "stars.json"
+            target.write_text("original", encoding="utf-8")
+            with patch.object(sync_stars, "urlopen", side_effect=[response(first), OSError("offline")]):
+                with self.assertRaises(OSError):
+                    sync_stars.sync(target)
+            self.assertEqual(target.read_text(encoding="utf-8"), "original")
+            with patch.object(sync_stars, "urlopen", side_effect=[response(first), response(last)]) as fetch:
+                sync_stars.sync(target)
+            data = json.loads(target.read_text(encoding="utf-8"))
+            self.assertEqual(fetch.call_count, 2)
+            self.assertEqual(len(data["repositories"]), 101)
+            self.assertEqual(data["repositories"][-1]["name"], "owner/last")
 
     def test_invalid_or_duplicate_slug_rejected(self):
         post = site.load_posts()[0]

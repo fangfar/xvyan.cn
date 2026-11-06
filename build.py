@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parent
 OUT = ROOT / "dist"
 ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>'
 EXTERNAL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14 4h6v6M20 4 10 14M10 5H5a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1v-5"/></svg>'
-NAV = [("home", "首页", ""), ("articles", "文章", "articles/"), ("works", "作品", "works/"), ("about", "关于", "about/")]
+NAV = [("home", "首页", ""), ("articles", "文章", "articles/"), ("works", "作品", "works/"), ("stars", "收藏", "stars/"), ("about", "关于", "about/")]
 
 
 def load_posts():
@@ -25,6 +25,23 @@ def load_posts():
             if not isinstance(post[field], str) or not post[field].strip():
                 raise ValueError(f"Missing {field} for {slug}")
     return posts
+
+
+def load_stars():
+    data = json.loads((ROOT / "content/stars.json").read_text(encoding="utf-8"))
+    validate_stars(data)
+    return data
+
+
+def validate_stars(data):
+    seen = set()
+    for repo in data["repositories"]:
+        name = repo["name"]
+        if not isinstance(name, str) or not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", name) or any(part in ('.', '..') for part in name.split('/')) or name.lower() in seen:
+            raise ValueError(f"Invalid or duplicate repository name: {name}")
+        if not isinstance(repo["description"], str):
+            raise ValueError(f"Invalid description for {name}")
+        seen.add(name.lower())
 
 
 def layout(title, description, active, body, prefix="", article=False):
@@ -88,6 +105,7 @@ def write(path, content):
 
 def build():
     posts = load_posts()
+    stars = load_stars()
     OUT.mkdir(exist_ok=True)
     shutil.copytree(ROOT / "assets", OUT / "assets", dirs_exist_ok=True)
     (OUT / "assets/avatar.webp").unlink(missing_ok=True)
@@ -109,6 +127,11 @@ def build():
       <section class="work-notes prose"><h2>关于这个项目</h2><p>morrow 是我在做的 Android 应用，把课表、学习任务和快递记录放在一起。</p><p>应用介绍、下载与使用说明都放在它自己的官网。这里记录项目，也记录做它的过程。</p><a class="text-link" href="https://github.com/fangfar/Morrow">查看 GitHub 仓库 {EXTERNAL}</a></section>
       <section class="other-work"><div class="section-heading"><h2>其他创作</h2><span class="heading-line"></span></div><p>也在尝试写故事、做科普动画。有可以分享的作品时，会放在这里。</p></section>'''
     write("works/index.html", layout("作品", "Xv Yan 的项目与创作，包含 morrow。", "works", works, "../"))
+    repositories = ''.join(f'''<li><a class="star-repo" href="https://github.com/{escape(repo['name'], quote=True)}"><h2>{escape(repo['name'])} {EXTERNAL}</h2>{f'<p>{escape(repo["description"])}</p>' if repo['description'] else ''}</a></li>''' for repo in stars['repositories'])
+    stars_page = f'''<header class="page-intro"><h1>收藏</h1><p>我在 GitHub 星标的仓库，记录一些感兴趣的项目。</p></header>
+      <div class="stars-meta"><p>共 {len(stars['repositories'])} 个仓库 · 快照日期 {escape(stars['updated'])}</p><a class="text-link" href="https://github.com/fangfar?tab=stars">查看 GitHub 星标 {EXTERNAL}</a></div>
+      {f'<ul class="star-list">{repositories}</ul>' if repositories else '<p class="page-note">暂时没有收藏的仓库。</p>'}'''
+    write("stars/index.html", layout("收藏", "Xv Yan 在 GitHub 收藏的开源项目。", "stars", stars_page, "../"))
     about = f'''<header class="about-intro"><div><h1>关于我</h1><p>你好，我是 Xv Yan。</p></div></header>
       <div class="prose about-prose"><p class="opening">做一些自己需要、也希望对别人有用的东西。</p><p>目前在做 morrow，也在尝试写故事、做科普动画。这个网站是放这些作品和记录的地方。</p><h2>关于这里</h2><p>这里会有开发中遇到的问题、做作品时的想法，也会有一点日常。不急着把每个想法都写成结论，先把值得留下的东西记下来。</p><h2>找到我</h2><p>可以在 GitHub 看看我的项目，也可以访问 morrow 官网了解应用。</p><div class="about-links"><a class="text-link" href="https://github.com/fangfar">GitHub {EXTERNAL}</a><a class="text-link" href="https://morrow.xvyan.cn/">morrow 官网 {EXTERNAL}</a></div></div>'''
     write("about/index.html", layout("关于", "关于 Xv Yan 和这个个人网站。", "about", about, "../"))

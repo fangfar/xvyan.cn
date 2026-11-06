@@ -97,3 +97,13 @@ a:focus-visible,a:focus-visible *{transition:none!important}
  :is(.text-link,.row-arrow,.next-post,.star-repo h2) svg{transition:none;transform:none!important}
  :is(.text-link,.back-link,.next-post,.site-header nav a):active{transform:none}
 }
+
+.stars-meta{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:14px;margin-bottom:28px}
+.star-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:40px;list-style:none;padding:0;margin:0 0 80px}
+.star-list li{border-top:1px solid var(--line);min-width:0}
+.star-repo{display:block;height:100%;padding:22px 0;overflow-wrap:anywhere}
+.star-repo h2{font-size:17px;font-weight:600;line-height:1.5}
+.star-repo h2 svg{width:16px;height:16px;color:var(--blue);vertical-align:middle}
+.star-repo p{color:var(--muted);font-size:14px;line-height:1.7;margin-top:8px}
+
+@media(max-width:540px){.site-header nav{gap:8px}.star-list{grid-template-columns:1fr;margin-bottom:56px}}
