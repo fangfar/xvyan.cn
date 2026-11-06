@@ -68,13 +68,19 @@ class SiteTests(unittest.TestCase):
                 self.assertTrue(any(tag == "html" and a.get("lang") == "zh-CN" for tag, a in doc.tags))
                 self.assertTrue(any(tag == "meta" and a.get("name") == "description" and a.get("content") for tag, a in doc.tags))
                 self.assertTrue(any(tag == "meta" and a.get("name") == "viewport" for tag, a in doc.tags))
-                self.assertFalse(any(tag == "script" for tag, _ in doc.tags))
+                scripts = [attrs for tag, attrs in doc.tags if tag == "script"]
+                if path == site.OUT / "index.html":
+                    self.assertEqual(len(scripts), 1)
+                    self.assertTrue(scripts[0]["src"].startswith("assets/motion.js?v="))
+                    self.assertIn("defer", scripts[0])
+                else:
+                    self.assertEqual(scripts, [])
                 for tag, attrs in doc.tags:
                     if tag == "img":
                         self.assertIn("alt", attrs)
                         self.assertIn("width", attrs)
                         self.assertIn("height", attrs)
-                    if tag == "img" or (tag == "link" and attrs.get("rel") == "stylesheet"):
+                    if tag in ("img", "script") or (tag == "link" and attrs.get("rel") == "stylesheet"):
                         self.assertFalse(urlsplit(attrs.get("src", attrs.get("href", ""))).scheme)
 
     def test_every_preview_article_is_labeled(self):

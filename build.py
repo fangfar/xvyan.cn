@@ -52,6 +52,10 @@ def validate_stars(data):
 
 def layout(title, description, active, body, prefix="", article=False):
     style_version = hashlib.sha256((ROOT / "assets/style.css").read_bytes()).hexdigest()[:12]
+    script = ""
+    if not prefix and not active and not article:
+        motion_version = hashlib.sha256((ROOT / "assets/motion.js").read_bytes()).hexdigest()[:12]
+        script = f'<script src="assets/motion.js?v={motion_version}" defer></script>'
     nav = "".join(f'<a href="{prefix}#{key}"' + (' aria-current="location"' if key == active else '') + f'>{label}</a>' for key, label in NAV)
     return f'''<!doctype html>
 <html lang="zh-CN">
@@ -62,6 +66,7 @@ def layout(title, description, active, body, prefix="", article=False):
   <meta name="theme-color" content="#ffffff">
   <title>{escape(title)} · Xv Yan</title>
   <link rel="stylesheet" href="{prefix}assets/style.css?v={style_version}">
+  {script}
 </head>
 <body>
   <a class="skip-link" href="#main">跳到正文</a>

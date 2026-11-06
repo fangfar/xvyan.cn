@@ -133,11 +133,20 @@ main:focus,main>section:focus{outline:none}
 .article-group{margin-bottom:32px}.article-group:last-child{margin-bottom:0}
 .about-prose{margin-bottom:0}
 .site-header nav a[aria-current=location]{color:var(--blue)}
-html:not(:has(main>section:target)) .site-header a[href="#home"],
-html:has(#home:target) .site-header a[href="#home"],
-html:has(#works:target) .site-header a[href="#works"],
-html:has(#articles:target) .site-header a[href="#articles"],
-html:has(#stars:target) .site-header a[href="#stars"],
-html:has(#about:target) .site-header a[href="#about"]{color:var(--blue);text-decoration:underline;text-underline-offset:10px}
+html:not(.has-scrollspy):not(:has(main>section:target)) .site-header a[href="#home"],
+html:not(.has-scrollspy):has(#home:target) .site-header a[href="#home"],
+html:not(.has-scrollspy):has(#works:target) .site-header a[href="#works"],
+html:not(.has-scrollspy):has(#articles:target) .site-header a[href="#articles"],
+html:not(.has-scrollspy):has(#stars:target) .site-header a[href="#stars"],
+html:not(.has-scrollspy):has(#about:target) .site-header a[href="#about"]{color:var(--blue);text-decoration:underline;text-underline-offset:10px}
 @media(max-width:1000px){.star-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:540px){html{scroll-padding-top:138px}.site-header{padding-bottom:10px}.star-list{grid-template-columns:1fr}}
+
+.site-header nav a::after{content:"";position:absolute;bottom:6px;left:0;right:0;height:1px;background:var(--blue);transform:scaleX(0);transition:transform 180ms var(--ease-out)}
+.site-header nav a[aria-current=location]::after{transform:scaleX(1)}
+.scroll-reveal{transition:opacity 240ms ease,transform 240ms var(--ease-out)}
+.reveal-pending{opacity:0;transform:translateY(10px)}
+html:has(:focus-visible) .scroll-reveal,.scroll-reveal:focus-within{opacity:1;transform:none;transition:none}
+@media(prefers-reduced-motion:reduce){.scroll-reveal{opacity:1;transform:none;transition:none}.site-header nav a::after{transition:none}}
+
+html:has(:focus-visible) .site-header nav a::after{transition:none}
