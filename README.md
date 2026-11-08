@@ -22,7 +22,7 @@ py -m http.server 4173 --bind 127.0.0.1 --directory dist
 - `body` 是作者自己维护的 HTML 正文，不接受未经审核的外部 HTML。标题、分类与摘要会自动转义。
 - `preview: true` 会显示预览文案提示。确认正文后设为 `false`，同时填写 `date`（例如 `2026-10-21`）。预览分区与提示会按内容自动显示。
 - 收藏：运行 `py sync_stars.py` 从 GitHub 更新 `content/stars.json`，再重新构建。中文简介在 `content/star-intros.json` 中单独维护，每条最多 64 字，不会被同步覆盖。新项目尚无中文简介时显示待整理提示。本地可选设置 `GITHUB_TOKEN` 避免匿名访问限额；获取失败时原快照不变。
-- 样式：`assets/style.css`。网站不展示或发布个人头像。
+- 样式：`assets/style.css`，参考 [StyleKit Editorial](https://www.stylekit.top/zh/styles/editorial) 的暖米白、单色衬线排版。网站不展示或发布个人头像。
 - 修改后重新运行 `py build.py`。
 
 ## 检查

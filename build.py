@@ -63,7 +63,7 @@ def layout(title, description, active, body, prefix="", article=False):
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="{escape(description, quote=True)}">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#F9F8F6">
   <title>{escape(title)} · Xv Yan</title>
   <link rel="stylesheet" href="{prefix}assets/style.css?v={style_version}">
   {script}
@@ -84,7 +84,7 @@ def layout(title, description, active, body, prefix="", article=False):
 def calendar():
     days = ''.join(f'<span>{day}</span>' for day in ['周一', '周二', '周三', '周四', '周五', '周六', '周日'])
     hours = ''.join(f'<span>{hour}:00</span>' for hour in ['08', '10', '12', '14', '16', '18'])
-    blocks = ''.join(f'<i class="lesson lesson-{i}"></i>' for i in range(1, 11))
+    blocks = '<span class="calendar-cell"></span>' * 35 + ''.join(f'<i class="lesson lesson-{i}"></i>' for i in range(1, 11))
     return f'<div class="calendar" aria-hidden="true"><div class="weekdays">{days}</div><div class="hours">{hours}</div><div class="calendar-grid">{blocks}</div></div>'
 
 
@@ -130,7 +130,7 @@ def build():
         article_sections = '<p class="page-note">这里还没有文章。</p>'
     repositories = ''.join(f'''<li><a class="star-repo" href="https://github.com/{escape(repo['name'], quote=True)}"><h3>{escape(repo['name'])} {EXTERNAL}</h3><p>{escape(repo["description"])}</p></a></li>''' for repo in stars['repositories'])
     home = f'''<section id="home" tabindex="-1" class="hero" aria-labelledby="hello"><div class="hero-copy">
-      <h1 id="hello">你好，我是 <span>Xv Yan。</span></h1>
+      <h1 id="hello"><span class="hero-greeting">你好，我是</span> <span class="hero-name">Xv Yan。</span></h1>
       <p class="hero-lead">做一些自己需要、<br class="mobile-break">也希望对别人有用的东西。</p>
       <p class="hero-description">在这里记录开发、分享作品，也写一点日常。</p>
       <div class="hero-links"><a class="text-link" href="#works">看看我的作品 {ARROW}</a><a class="text-link" href="#articles">读读最近的文章 {ARROW}</a></div>
