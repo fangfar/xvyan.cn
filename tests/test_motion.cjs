@@ -2,14 +2,14 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 
-function createPage() {
+function createPage({ sharedRow = false, hash = '' } = {}) {
   const classes = () => {
     const values = new Set();
     return { add: (...names) => names.forEach(name => values.add(name)), remove: name => values.delete(name), contains: name => values.has(name) };
   };
   const ids = ['home', 'works', 'stars', 'about'];
-  const window = { scrollY: 0, innerHeight: 800, events: {}, frames: [] };
-  const sections = ids.map((id, i) => ({ id, getBoundingClientRect: () => ({ top: i * 1000 - window.scrollY }) }));
+  const window = { scrollY: 0, innerHeight: 800, events: {}, frames: [], location: { hash } };
+  const sections = ids.map((id, i) => ({ id, getBoundingClientRect: () => ({ top: (sharedRow && i === 1 ? 0 : i * 1000) - window.scrollY }) }));
   const links = ids.map(id => ({ hash: `#${id}`, attrs: {}, setAttribute(key, value) { this.attrs[key] = value; }, removeAttribute(key) { delete this.attrs[key]; } }));
   const input = { value: '', addEventListener(type, fn) { this.onInput = fn; } };
   const tools = { hidden: true }, count = {}, empty = { hidden: true };
@@ -46,6 +46,17 @@ page.window.events.scroll();
 page.window.events.scroll();
 assert.equal(page.window.frames.length, 1, 'Multiple scroll events share one frame');
 console.log('Navigation checks passed: active section, upward scrolling, page bottom, frame batching; no reveal animations.');
+
+const desktop = createPage({ sharedRow: true, hash: '#home' });
+assert.deepEqual(desktop.active(), ['#home']);
+for (const hash of ['#works', '#home']) {
+  desktop.window.location.hash = hash;
+  desktop.window.events.hashchange();
+  desktop.window.frames.splice(0).forEach(callback => callback());
+  assert.deepEqual(desktop.active(), [hash], 'Navigation follows the selected section when both share a row');
+}
+desktop.scrollTo(2050);
+assert.deepEqual(desktop.active(), ['#stars']);
 
 assert.equal(page.tools.hidden, false);
 for (const [query, expected] of [['ANDROID', [false, true]], ['音乐', [true, false]], ['missing', [true, true]], ['  ', [false, false]]]) {

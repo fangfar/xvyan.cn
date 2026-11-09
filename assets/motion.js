@@ -11,6 +11,10 @@
     for (const section of sections) {
       if (section.getBoundingClientRect().top <= boundary) current = section;
     }
+    const requested = sections.find(section => `#${section.id}` === window.location.hash);
+    if (requested && Math.abs(requested.getBoundingClientRect().top - current.getBoundingClientRect().top) < 1) {
+      current = requested;
+    }
     if (window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
       current = sections[sections.length - 1];
     }
@@ -31,6 +35,7 @@
   window.addEventListener('scroll', scheduleNavigation, { passive: true });
   window.addEventListener('resize', scheduleNavigation);
   window.addEventListener('pageshow', scheduleNavigation);
+  window.addEventListener('hashchange', scheduleNavigation);
 
 })();
 

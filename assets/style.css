@@ -1,4 +1,5 @@
 
+
   :root{
     --paper:#FAF6EF;
     --ink:#3B3833;
@@ -235,3 +236,26 @@
   .skip-link:focus{top:12px}
   .site-nav a[aria-current="location"]{text-decoration:underline;text-underline-offset:6px}
   .page-intro,.not-found{padding-top:64px;min-height:50vh}
+
+
+/* 统一内容边界，让已有内容形成宽屏分栏。 */
+.page{max-width:76rem;padding-inline:48px}
+main > section,.intro{max-width:none;margin-inline:0}
+@media (max-width:900px){.page{max-width:54rem;padding-inline:28px}}
+@media (max-width:560px){.page{padding-inline:max(20px,env(safe-area-inset-left,0px)) max(20px,env(safe-area-inset-right,0px))}}
+
+@media (min-width:901px){
+ #main{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:80px;align-items:start}
+ #home,#works{margin-top:80px}
+ #stars,#about{grid-column:1 / -1}
+ #home .status{max-width:none}
+}
+#stars{margin-top:88px}
+.star-list{column-gap:64px}
+.star-count{margin-left:auto}
+#about{display:grid;grid-template-columns:240px minmax(0,1fr);gap:64px;align-items:start}
+.about-copy{max-width:46rem;min-width:0}
+.about-copy > p:first-child{margin-top:0}
+@media (max-width:1100px) and (min-width:901px){#main{column-gap:56px}#about{grid-template-columns:180px minmax(0,1fr);gap:48px}}
+@media (max-width:900px){#about{display:block}.about-copy{max-width:none}.star-list{column-gap:32px}}
+@media (max-width:560px){#stars{margin-top:60px}.star-count{margin-left:0}}
