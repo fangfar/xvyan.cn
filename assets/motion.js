@@ -33,3 +33,30 @@
   window.addEventListener('pageshow', scheduleNavigation);
 
 })();
+
+
+(function () {
+  var input = document.querySelector('[data-star-search]');
+  if (!input) return;
+  var tools = document.querySelector('[data-stars-tools]');
+  if (tools) tools.hidden = false;
+  var count = document.querySelector('[data-star-count]');
+  var empty = document.querySelector('[data-star-empty]');
+  var items = Array.prototype.slice.call(document.querySelectorAll('.star-list > li'));
+  function showCount(visible) {
+    if (count) count.textContent = '显示 ' + visible + ' / 共 ' + items.length;
+  }
+  showCount(items.length);
+  input.addEventListener('input', function () {
+    var query = input.value.trim().toLowerCase();
+    var visible = 0;
+    items.forEach(function (item) {
+      var haystack = item.getAttribute('data-search') || '';
+      var matches = !query || haystack.indexOf(query) !== -1;
+      item.hidden = !matches;
+      if (matches) visible += 1;
+    });
+    showCount(visible);
+    if (empty) empty.hidden = visible !== 0;
+  });
+})();

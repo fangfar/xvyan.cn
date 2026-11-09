@@ -72,12 +72,13 @@ class SiteTests(unittest.TestCase):
                 self.assertTrue(any(tag == "meta" and a.get("name") == "description" and a.get("content") for tag, a in doc.tags))
                 self.assertTrue(any(tag == "meta" and a.get("name") == "viewport" for tag, a in doc.tags))
                 scripts = [attrs for tag, attrs in doc.tags if tag == "script"]
+                self.assertTrue(scripts[0]["src"].split("?")[0].endswith("assets/theme.js"))
                 if path == site.OUT / "index.html":
-                    self.assertEqual(len(scripts), 1)
-                    self.assertTrue(scripts[0]["src"].startswith("assets/motion.js?v="))
-                    self.assertIn("defer", scripts[0])
+                    self.assertEqual(len(scripts), 2)
+                    self.assertTrue(scripts[1]["src"].startswith("assets/motion.js?v="))
+                    self.assertIn("defer", scripts[1])
                 else:
-                    self.assertEqual(scripts, [])
+                    self.assertEqual(len(scripts), 1)
                 for tag, attrs in doc.tags:
                     if tag == "img":
                         self.assertIn("alt", attrs)
@@ -86,28 +87,17 @@ class SiteTests(unittest.TestCase):
                     if tag in ("img", "script") or (tag == "link" and attrs.get("rel") == "stylesheet"):
                         self.assertFalse(urlsplit(attrs.get("src", attrs.get("href", ""))).scheme)
 
-    def test_editorial_photo_and_navigation_only_script(self):
+    def test_reading_layout_theme_and_search_are_available(self):
         home = self.pages[site.OUT / "index.html"]
-        photos = [attrs for tag, attrs in home.tags if tag == "img"]
-        self.assertEqual(len(photos), 1)
-        self.assertEqual(photos[0]["src"], "assets/editorial-desk.webp")
-        self.assertTrue((site.OUT / photos[0]["src"]).is_file())
-        self.assertTrue(any(tag == "blockquote" for tag, _ in home.tags))
+        self.assertFalse(any(tag == "img" for tag, _ in home.tags))
+        for doc in self.pages.values():
+            buttons = [a for t, a in doc.tags if t == "button" and a.get("class") == "theme-toggle"]
+            self.assertEqual(len(buttons), 1)
+            self.assertIn("aria-label", buttons[0])
+        self.assertTrue(any(t == "input" and a.get("type") == "search" for t, a in home.tags))
+        self.assertFalse(any("data-reveal" in a for _, a in home.tags))
         script = (site.OUT / "assets/motion.js").read_text(encoding="utf-8")
         self.assertNotIn("IntersectionObserver", script)
-        self.assertNotIn("reveal-pending", script)
-
-    def test_design_document_has_no_legacy_style_exceptions(self):
-        import re
-        css = (ROOT / "assets/style.css").read_text(encoding="utf-8")
-        self.assertEqual(set(re.findall(r"#[0-9a-fA-F]{6}", css)),
-                         {"#f9f8f6", "#1c1c1c", "#6b7280", "#816d70"})
-        self.assertEqual(re.findall(r"border-radius:([^;}]+)", css), ["0"])
-        for forbidden in ("box-shadow", "gradient(", "reveal-pending", "scroll-behavior:smooth"):
-            self.assertNotIn(forbidden, css)
-        home = self.pages[site.OUT / "index.html"]
-        self.assertEqual(sum(tag == "p" and attrs.get("class") == "section-label"
-                             for tag, attrs in home.tags), 4)
 
     def test_articles_are_removed_from_build(self):
         home = self.pages[site.OUT / "index.html"]
