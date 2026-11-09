@@ -19,7 +19,7 @@ py -m http.server 4173 --bind 127.0.0.1 --directory dist
 
 - 首页、作品和关于区域：编辑 `build.py` 中对应文案。
 - 收藏：运行 `py sync_stars.py` 从 GitHub 更新 `content/stars.json`，再重新构建。中文简介在 `content/star-intros.json` 中单独维护，每条最多 64 字，不会被同步覆盖。新项目尚无中文简介时显示待整理提示。本地可选设置 `GITHUB_TOKEN` 避免匿名访问限额；获取失败时原快照不变。
-- 样式：`assets/style.css`，参考 [StyleKit Editorial](https://www.stylekit.top/zh/styles/editorial) 的暖米白、单色衬线排版。网站不展示或发布个人头像。
+- 样式：`assets/style.css`，参考 [StyleKit Editorial](https://www.stylekit.top/zh/styles/editorial) 的暖米白、衬线排版，并按补充规范采用 1200px 容器、两栏收藏、反色主按钮和少量陈玫色选中态；主按钮保留用户要求的 6px 圆角。网站不展示或发布个人头像。
 - 修改后重新运行 `py build.py`。
 
 ## 检查
