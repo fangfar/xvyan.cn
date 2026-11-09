@@ -95,17 +95,18 @@ def build():
     (OUT / "assets/avatar.webp").unlink(missing_ok=True)
     repositories = ''.join(f'''<li><a class="star-repo" href="https://github.com/{escape(repo['name'], quote=True)}"><h3>{escape(repo['name'])}</h3><p>{escape(repo["description"])}</p></a></li>''' for repo in stars['repositories'])
     home = f'''<section id="home" tabindex="-1" class="hero" aria-labelledby="hello"><div class="hero-copy">
-      <h1 id="hello"><span class="hero-greeting">你好，我是</span> <span class="hero-name">Xv Yan。</span></h1>
-      <p class="hero-lead">做一些自己需要、<br class="mobile-break">也希望对别人有用的东西。</p>
+      <p class="section-label">个人主页</p>
+      <h1 id="hello"><span>你好，我是</span> <span>Xv Yan。</span></h1>
+      <p class="hero-lead">做一些自己需要、也希望对别人有用的东西。</p>
       <p class="hero-description">在这里记录开发、分享作品，也写一点日常。</p>
       <div class="hero-links"><a class="text-link primary-link" href="#works">看看我的作品</a></div>
-    </div></section>
-    <section id="works" tabindex="-1" class="home-section" aria-labelledby="works-title"><div class="section-heading"><h2 id="works-title">正在做的作品</h2><span class="heading-line"></span></div>{project()}
+    </div><div class="hero-media"><img src="assets/editorial-desk.webp" width="1200" height="900" alt="窗边暖调书桌上的笔记本电脑、布面笔记本与铅笔" fetchpriority="high" decoding="async"></div></section>
+    <section id="works" tabindex="-1" class="home-section" aria-labelledby="works-title"><div class="section-heading"><p class="section-label">作品</p><h2 id="works-title">正在做的作品</h2></div>{project()}
       <p class="section-note">也在尝试写故事、做科普动画。有可以分享的作品时，会放在这里。</p></section>
-    <section id="stars" tabindex="-1" class="home-section" aria-labelledby="stars-title"><div class="section-heading"><h2 id="stars-title">我的收藏</h2><span class="heading-line"></span></div>
-      <div class="stars-meta"><p>GitHub 星标 · 共 {len(stars['repositories'])} 个项目 · 更新于 {escape(stars['updated'])}</p><a class="text-link" href="https://github.com/fangfar?tab=stars">在 GitHub 查看</a></div>
+    <section id="stars" tabindex="-1" class="home-section" aria-labelledby="stars-title"><div class="section-heading"><p class="section-label">收藏</p><h2 id="stars-title">我的收藏</h2></div>
+      <div class="stars-meta"><p>GitHub 星标 · 共 <span class="number">{len(stars['repositories'])}</span> 个项目 · 更新于 <time datetime="{escape(stars['updated'], quote=True)}">{escape(stars['updated'])}</time></p><a class="text-link" href="https://github.com/fangfar?tab=stars">在 GitHub 查看</a></div>
       {f'<ul class="star-list">{repositories}</ul>' if repositories else '<p class="page-note">暂时没有收藏的仓库。</p>'}</section>
-    <section id="about" tabindex="-1" class="home-section" aria-labelledby="about-title"><div class="section-heading"><h2 id="about-title">关于我</h2><span class="heading-line"></span></div>
+    <section id="about" tabindex="-1" class="home-section" aria-labelledby="about-title"><div class="section-heading"><p class="section-label">关于</p><h2 id="about-title">关于我</h2></div>
       <div class="prose about-prose"><p class="opening">你好，我是 Xv Yan。</p><p>目前在做 morrow，也在尝试写故事、做科普动画。这里是放这些作品和记录的地方。</p><blockquote><p>不急着把每个想法都写成结论，先把值得留下的东西记下来。</p></blockquote><div class="about-links"><a class="text-link" href="https://github.com/fangfar">GitHub</a><a class="text-link" href="https://morrow.xvyan.cn/">morrow 官网</a></div></div></section>'''
     write("index.html", layout("首页", "Xv Yan 的个人网站，分享作品与收藏。", "", home))
     for key, label in NAV[1:]:

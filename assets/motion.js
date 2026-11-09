@@ -32,26 +32,4 @@
   window.addEventListener('resize', scheduleNavigation);
   window.addEventListener('pageshow', scheduleNavigation);
 
-  if (!('IntersectionObserver' in window)) return;
-  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const observer = new IntersectionObserver(entries => {
-    for (const entry of entries) {
-      if (!entry.isIntersecting) continue;
-      entry.target.classList.remove('reveal-pending');
-      observer.unobserve(entry.target);
-    }
-  }, { threshold: 0, rootMargin: '0px 0px -24px 0px' });
-
-  if (!motion.matches) {
-    for (const item of document.querySelectorAll('.home-section > .section-heading, .project, .star-list > li, .about-prose')) {
-      if (item.getBoundingClientRect().top < window.innerHeight - 24) continue;
-      item.classList.add('scroll-reveal', 'reveal-pending');
-      observer.observe(item);
-    }
-  }
-  motion.addEventListener('change', () => {
-    if (!motion.matches) return;
-    observer.disconnect();
-    for (const item of document.querySelectorAll('.reveal-pending')) item.classList.remove('reveal-pending');
-  });
 })();

@@ -18,8 +18,11 @@ import sync_stars
 class Document(HTMLParser):
     def __init__(self, source):
         super().__init__()
-        self.links, self.ids, self.tags = [], set(), []
+        self.links, self.ids, self.tags, self.text = [], set(), [], []
         self.feed(source)
+
+    def handle_data(self, data):
+        self.text.append(data)
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
@@ -83,6 +86,29 @@ class SiteTests(unittest.TestCase):
                     if tag in ("img", "script") or (tag == "link" and attrs.get("rel") == "stylesheet"):
                         self.assertFalse(urlsplit(attrs.get("src", attrs.get("href", ""))).scheme)
 
+    def test_editorial_photo_and_navigation_only_script(self):
+        home = self.pages[site.OUT / "index.html"]
+        photos = [attrs for tag, attrs in home.tags if tag == "img"]
+        self.assertEqual(len(photos), 1)
+        self.assertEqual(photos[0]["src"], "assets/editorial-desk.webp")
+        self.assertTrue((site.OUT / photos[0]["src"]).is_file())
+        self.assertTrue(any(tag == "blockquote" for tag, _ in home.tags))
+        script = (site.OUT / "assets/motion.js").read_text(encoding="utf-8")
+        self.assertNotIn("IntersectionObserver", script)
+        self.assertNotIn("reveal-pending", script)
+
+    def test_design_document_has_no_legacy_style_exceptions(self):
+        import re
+        css = (ROOT / "assets/style.css").read_text(encoding="utf-8")
+        self.assertEqual(set(re.findall(r"#[0-9a-fA-F]{6}", css)),
+                         {"#f9f8f6", "#1c1c1c", "#6b7280", "#816d70"})
+        self.assertEqual(re.findall(r"border-radius:([^;}]+)", css), ["0"])
+        for forbidden in ("box-shadow", "gradient(", "reveal-pending", "scroll-behavior:smooth"):
+            self.assertNotIn(forbidden, css)
+        home = self.pages[site.OUT / "index.html"]
+        self.assertEqual(sum(tag == "p" and attrs.get("class") == "section-label"
+                             for tag, attrs in home.tags), 4)
+
     def test_articles_are_removed_from_build(self):
         home = self.pages[site.OUT / "index.html"]
         self.assertNotIn("articles", home.ids)
@@ -111,7 +137,7 @@ class SiteTests(unittest.TestCase):
         with TemporaryDirectory() as folder, patch.object(site, "OUT", Path(folder)), patch.object(site, "load_stars", return_value=stars):
             site.build()
             page = (site.OUT / "index.html").read_text(encoding="utf-8")
-            self.assertIn('共 2 个项目', page)
+            self.assertIn('共 2 个项目', ''.join(Document(page).text))
             self.assertIn('https://github.com/example/project', page)
             self.assertIn('&lt;script&gt;bad&lt;/script&gt;', page)
             self.assertNotIn('<script>bad</script>', page)
