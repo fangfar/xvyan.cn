@@ -43,7 +43,7 @@
   }, { threshold: 0, rootMargin: '0px 0px -24px 0px' });
 
   if (!motion.matches) {
-    for (const item of document.querySelectorAll('.home-section > .section-heading, .project, .article-group, .star-list > li, .about-prose')) {
+    for (const item of document.querySelectorAll('.home-section > .section-heading, .project, .star-list > li, .about-prose')) {
       if (item.getBoundingClientRect().top < window.innerHeight - 24) continue;
       item.classList.add('scroll-reveal', 'reveal-pending');
       observer.observe(item);

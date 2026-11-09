@@ -7,7 +7,7 @@ function createPage(reducedMotion = false, supportsObserver = true) {
     const values = new Set();
     return { add: (...names) => names.forEach(name => values.add(name)), remove: name => values.delete(name), contains: name => values.has(name) };
   };
-  const ids = ['home', 'works', 'articles', 'stars', 'about'];
+  const ids = ['home', 'works', 'stars', 'about'];
   const window = { scrollY: 0, innerHeight: 800, events: {}, frames: [] };
   const sections = ids.map((id, i) => ({ id, getBoundingClientRect: () => ({ top: i * 1000 - window.scrollY }) }));
   const links = ids.map(id => ({ hash: `#${id}`, attrs: {}, setAttribute(key, value) { this.attrs[key] = value; }, removeAttribute(key) { delete this.attrs[key]; } }));
@@ -41,8 +41,6 @@ function createPage(reducedMotion = false, supportsObserver = true) {
 const page = createPage();
 assert.deepEqual(page.active(), ['#home']);
 page.scrollTo(2050);
-assert.deepEqual(page.active(), ['#articles']);
-page.scrollTo(3050);
 assert.deepEqual(page.active(), ['#stars']);
 page.scrollTo(4200);
 assert.deepEqual(page.active(), ['#about']);
