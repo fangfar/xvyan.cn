@@ -49,7 +49,7 @@ function go(index){
  $('mobile-key-text').textContent=q.key;
  $('question-select').value=String(current);
  const fig=$('circuit-figure');fig.hidden=!q.image;
- if(q.image){ const vector=['26','27','28','210','36','37','39','bjt','mos','diff','curve1','curve2'].includes(q.image); $('circuit').src=`images/${q.image}.${vector?'svg':'png'}`; $('circuit').alt=`${q.title}的重绘${q.id==='4-1'||q.id==='4-2'?'特性曲线':'电路图'}`; $('circuit-caption').textContent=q.id==='4-1'||q.id==='4-2'?'重绘特性曲线 · 示意':'按原题重绘'; }
+ if(q.image){ const vector=['26','27','28','210','36','37','39','bjt','mos','diff','curve1','curve2'].includes(q.image); $('circuit').src=`images/${q.image}.${vector?'svg':'png'}?v=20261116-2`; $('circuit').alt=`${q.title}的重绘${q.id==='4-1'||q.id==='4-2'?'特性曲线':'电路图'}`; $('circuit-caption').textContent=q.id==='4-1'||q.id==='4-2'?'重绘特性曲线 · 示意':'按原题重绘'; }
  const options=$('options');options.replaceChildren();
  (q.options||[]).forEach((option,i)=>{const row=document.createElement('div');row.className='option';const b=document.createElement('b');b.textContent=String.fromCharCode(65+i)+'.';row.append(b,document.createTextNode(option));options.append(row)});
  $('steps').replaceChildren();q.steps.forEach((item,i)=>{const el=document.createElement('article');el.className='step';el.innerHTML=`<span class="step-index">${String(i+1).padStart(2,'0')}</span><div class="step-content"><h3>${item.title}</h3><div class="step-copy">${item.body}</div></div>`;$('steps').append(el)});
