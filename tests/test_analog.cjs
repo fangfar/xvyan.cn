@@ -9,7 +9,7 @@ vm.runInNewContext(fs.readFileSync(path.join(root, 'questions.js'), 'utf8') + ';
 const questions = context.groupsForTest.flatMap(group => group.items);
 assert.equal(questions.length, 19);
 assert.equal(new Set(questions.map(question => question.id)).size, questions.length);
-const vector = new Set(['37', 'bjt', 'mos', 'diff', 'curve1', 'curve2']);
+const vector = new Set(['26', '27', '28', '210', '36', '37', '39', 'bjt', 'mos', 'diff', 'curve1', 'curve2']);
 for (const question of questions) {
   assert.ok(question.description && question.key && question.result && question.steps.length, question.id);
   if (question.image) assert.ok(fs.existsSync(path.join(root, 'images', `${question.image}.${vector.has(question.image) ? 'svg' : 'png'}`)), question.id);
