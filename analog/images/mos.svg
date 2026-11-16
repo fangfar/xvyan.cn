@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 590" role="img" aria-labelledby="title">
+<title id="title">增强型 NMOS 共源放大电路，包含与源极相连的体端</title>
+<g fill="none" stroke="#1b2c35" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M90 315H160 M176 315H350 M350 315H520 M520 315V255 M90 520H880 M350 75H850 M350 75V105 M350 175V210 M350 210V390 M350 460V520"/>
+ <path d="M160 290V340 M176 290V340 M350 210H260V225 M260 295V315 M260 315H350 M520 255V375"/>
+ <path d="M585 235V265 M585 285V325 M585 345V375 M585 250H650 M650 250V175 M650 105V75 M585 360H650V395 M650 465V520"/>
+ <path d="M585 305H695V385H650 M695 385V360 M650 395H760V420 M760 436V520 M650 250H760 M776 250H850 M760 225V275 M776 225V275 M740 420H780 M740 436H780"/>
+ <rect x="339" y="105" width="22" height="70" fill="white"/><rect x="339" y="390" width="22" height="70" fill="white"/><rect x="249" y="225" width="22" height="70" fill="white"/><rect x="639" y="105" width="22" height="70" fill="white"/><rect x="639" y="395" width="22" height="70" fill="white"/>
+ <path d="M650 520V535 M629 535H671 M636 543H664 M642 551H658"/>
+ <circle cx="90" cy="315" r="6"/><circle cx="90" cy="520" r="6"/><circle cx="850" cy="250" r="6"/><circle cx="880" cy="520" r="6"/>
+ <circle cx="260" cy="315" r="5" fill="#1b2c35"/><circle cx="350" cy="210" r="5" fill="#1b2c35"/><circle cx="650" cy="250" r="5" fill="#1b2c35"/><circle cx="650" cy="385" r="5" fill="#1b2c35"/><circle cx="650" cy="520" r="5" fill="#1b2c35"/>
+</g>
+<!-- The gate input crosses the divider conductor without a junction, as in the question. -->
+<path d="M603 295L585 305L603 315Z" fill="#1b2c35"/>
+<g font-family="Arial, sans-serif" fill="#263843" font-size="25"><text x="365" y="140">R₂</text><text x="365" y="432">R₁</text><text x="207" y="265">Rɢ</text><text x="662" y="145">Rᴅ</text><text x="665" y="436">Rₛ</text><text x="785" y="435">Cₛ</text><text x="145" y="278">C₁</text><text x="748" y="213">C₂</text><text x="537" y="303">G</text><text x="662" y="241">D</text><text x="664" y="378">S</text><text x="855" y="80">＋Vᴅᴅ</text><text x="58" y="350">＋</text><text x="58" y="500">−</text><text x="22" y="425">vᵢ</text><text x="858" y="280">＋</text><text x="888" y="505">−</text><text x="896" y="405">vₒ</text></g>
+</svg>

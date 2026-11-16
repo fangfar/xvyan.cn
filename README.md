@@ -21,12 +21,14 @@ py -m http.server 4173 --bind 127.0.0.1 --directory dist
 - 收藏：运行 `py sync_stars.py` 从 GitHub 更新 `content/stars.json`，再重新构建。中文简介在 `content/star-intros.json` 中单独维护，每条最多 64 字，不会被同步覆盖。新项目尚无中文简介时显示待整理提示。本地可选设置 `GITHUB_TOKEN` 避免匿名访问限额；获取失败时原快照不变。
 - 样式：`assets/style.css`；阅读型排版、电脑与手机分栏、浅色与深色主题。主题逻辑在 `assets/theme.js`，导航与收藏搜索在 `assets/motion.js`。
 - 修改后重新运行 `py build.py`。
+- 模拟电子技术作业复习：编辑 `analog/`，发布后从 `/analog/` 访问；题图和学习进度均在页面本地使用。
 
 ## 检查
 
 ```powershell
 py -m unittest discover -s tests -v
 node tests/test_motion.cjs
+node tests/test_analog.cjs
 ```
 
 动效逻辑检查使用 Node.js 内置模块，不需要安装 npm 包。

@@ -85,6 +85,7 @@ def build():
     if (OUT / "articles").exists():
         shutil.rmtree(OUT / "articles")
     shutil.copytree(ROOT / "assets", OUT / "assets", dirs_exist_ok=True)
+    shutil.copytree(ROOT / "analog", OUT / "analog", dirs_exist_ok=True)
     (OUT / "assets/avatar.webp").unlink(missing_ok=True)
     repositories = ''.join(f'''<li data-search="{escape(repo['name'].lower() + ' ' + repo['description'].lower(), quote=True)}"><a class="star-repo" href="https://github.com/{escape(repo['name'], quote=True)}">{escape(repo['name'])}</a><span class="star-desc">{escape(repo['description'])}</span></li>''' for repo in stars['repositories'])
     home = (ROOT / "home.html").read_text(encoding="utf-8")

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" role="img" aria-labelledby="title">
+<title id="title">图题 6.6 单端输出长尾差动放大电路</title>
+<g fill="none" stroke="#1b2c35" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M320 80H680 M500 80V55 M320 80V130 M320 200V250 M320 250H415 M680 80V130 M680 200V250"/>
+ <path d="M245 275V345 M245 290L320 250 M245 330L320 375 M320 375H500 M755 275V345 M755 290L680 250 M755 330L680 375 M680 375H500"/>
+ <path d="M90 310H130 M210 310H245 M755 310H825 M825 310V335 M825 415V440 M500 375V405 M500 485V525"/>
+ <rect x="310" y="130" width="20" height="70" fill="white"/><rect x="670" y="130" width="20" height="70" fill="white"/><rect x="130" y="299" width="80" height="22" fill="white"/><rect x="814" y="335" width="22" height="80" fill="white"/><rect x="489" y="405" width="22" height="80" fill="white"/>
+ <circle cx="90" cy="310" r="6"/><circle cx="90" cy="440" r="6"/><circle cx="415" cy="250" r="6"/><circle cx="415" cy="470" r="6"/><circle cx="500" cy="525" r="6"/><circle cx="320" cy="250" r="5" fill="#1b2c35"/><circle cx="500" cy="375" r="5" fill="#1b2c35"/><circle cx="755" cy="310" r="5" fill="#1b2c35"/>
+ <path d="M90 440V455 M70 455H110 M76 463H104 M82 471H98 M415 470V485 M395 485H435 M401 493H429 M407 501H423 M825 440V455 M805 455H845 M811 463H839 M817 471H833"/>
+</g>
+<path d="M305 357L320 375L295 369Z M695 357L680 375L705 369Z" fill="#1b2c35"/>
+<g font-family="Arial, sans-serif" fill="#263843" font-size="25"><text x="285" y="120">R꜀₁</text><text x="258" y="223">10 kΩ</text><text x="690" y="120">R꜀₂</text><text x="691" y="223">10 kΩ</text><text x="141" y="286">Rᵦ₁</text><text x="143" y="352">1 kΩ</text><text x="838" y="375">Rᵦ₂</text><text x="837" y="405">1 kΩ</text><text x="513" y="442">Rₑ</text><text x="513" y="472">15.3 kΩ</text><text x="514" y="551">−Vₑₑ (−12 V)</text><text x="513" y="58">＋V꜀꜀ (12 V)</text><text x="67" y="294">＋</text><text x="67" y="433">−</text><text x="48" y="381">vᵢ</text><text x="430" y="268">＋</text><text x="430" y="465">−</text><text x="438" y="305">vₒ</text><text x="267" y="321">T₁</text><text x="714" y="321">T₂</text></g>
+</svg>

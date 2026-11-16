@@ -63,7 +63,7 @@ class SiteTests(unittest.TestCase):
                         self.assertIn(unquote(url.fragment), target_doc.ids)
 
     def test_page_structure_and_no_external_runtime_dependencies(self):
-        self.assertEqual(len(self.pages), 5)
+        self.assertEqual(len(self.pages), 6)
         for path, doc in self.pages.items():
             with self.subTest(page=str(path)):
                 self.assertEqual(sum(tag == "h1" for tag, _ in doc.tags), 1)
@@ -72,6 +72,12 @@ class SiteTests(unittest.TestCase):
                 self.assertTrue(any(tag == "meta" and a.get("name") == "description" and a.get("content") for tag, a in doc.tags))
                 self.assertTrue(any(tag == "meta" and a.get("name") == "viewport" for tag, a in doc.tags))
                 scripts = [attrs for tag, attrs in doc.tags if tag == "script"]
+                if path == site.OUT / "analog/index.html":
+                    self.assertEqual([s["src"] for s in scripts], ["questions.js", "app.js"])
+                    self.assertTrue(all("defer" in s for s in scripts))
+                    self.assertTrue((site.OUT / "analog/images/mos.svg").is_file())
+                    self.assertTrue((site.OUT / "analog/images/37.svg").is_file())
+                    continue
                 self.assertTrue(scripts[0]["src"].split("?")[0].endswith("assets/theme.js"))
                 if path == site.OUT / "index.html":
                     self.assertEqual(len(scripts), 2)
@@ -90,7 +96,9 @@ class SiteTests(unittest.TestCase):
     def test_reading_layout_theme_and_search_are_available(self):
         home = self.pages[site.OUT / "index.html"]
         self.assertFalse(any(tag == "img" for tag, _ in home.tags))
-        for doc in self.pages.values():
+        for path, doc in self.pages.items():
+            if path == site.OUT / "analog/index.html":
+                continue
             buttons = [a for t, a in doc.tags if t == "button" and a.get("class") == "theme-toggle"]
             self.assertEqual(len(buttons), 1)
             self.assertIn("aria-label", buttons[0])
