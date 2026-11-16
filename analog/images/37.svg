@@ -3,15 +3,15 @@
 <defs>
  <g id="diode-right" stroke="#18242b" stroke-width="3" fill="none"><path d="M0 0H20 M20 -17V17L52 0Z M52 -20V20 M52 0H78"/></g>
  <g id="diode-left" stroke="#18242b" stroke-width="3" fill="none"><path d="M0 0H20 M20 -20V20 M20 0L52 -17V17Z M52 0H78"/></g>
- <g id="resistor" stroke="#18242b" stroke-width="3" fill="white"><path d="M0 0V22 M0 94V115"/><rect x="-11" y="22" width="22" height="72"/></g>
+ <g id="resistor" stroke="#18242b" stroke-width="3" fill="white"><path d="M0 0V36 M0 80V115"/><rect x="-9" y="36" width="18" height="44"/></g>
  <g id="battery-neg" stroke="#18242b" stroke-width="3"><path d="M0 0V25 M-13 25H13 M-22 39H22 M0 39V66"/></g>
  <g id="battery-pos" stroke="#18242b" stroke-width="3"><path d="M0 0V25 M-22 25H22 M-13 39H13 M0 39V66"/></g>
 </defs>
 <g fill="none" stroke="#18242b" stroke-width="3">
  <!-- a --> <path d="M80 90H145 M223 90H350 M80 90V175 M80 241V310H350 M350 90H460 M350 310H460 M350 205V215 M350 281V310"/><circle cx="350" cy="90" r="5" fill="#18242b"/><circle cx="350" cy="310" r="5" fill="#18242b"/><circle cx="460" cy="90" r="6" fill="white"/><circle cx="460" cy="310" r="6" fill="white"/>
  <!-- b --> <path d="M680 90H745 M823 90H950 M680 90V175 M680 241V310H950 M950 90H1060 M950 310H1060 M950 205V215 M950 281V310"/><circle cx="950" cy="90" r="5" fill="#18242b"/><circle cx="950" cy="310" r="5" fill="#18242b"/><circle cx="1060" cy="90" r="6" fill="white"/><circle cx="1060" cy="310" r="6" fill="white"/>
- <!-- c --> <path d="M80 465H145 M223 465H350 M80 465V690H350 M140 545H145 M223 545H350 M140 545V575 M140 641V690 M350 465V545 M350 545H460 M350 545V560 M350 610V625 M350 690H460"/><rect x="339" y="560" width="22" height="50" fill="white"/><circle cx="350" cy="545" r="5" fill="#18242b"/><circle cx="350" cy="690" r="5" fill="#18242b"/><circle cx="460" cy="545" r="6" fill="white"/><circle cx="460" cy="690" r="6" fill="white"/>
- <!-- d --> <path d="M680 465H745 M823 465H950 M680 465V690H950 M740 545H745 M823 545H950 M740 545V575 M740 641V690 M950 465V545 M950 545H1060 M950 545V560 M950 610V625 M950 690H1060"/><rect x="939" y="560" width="22" height="50" fill="white"/><circle cx="950" cy="545" r="5" fill="#18242b"/><circle cx="950" cy="690" r="5" fill="#18242b"/><circle cx="1060" cy="545" r="6" fill="white"/><circle cx="1060" cy="690" r="6" fill="white"/>
+ <!-- c --> <path d="M80 465H145 M223 465H350 M80 465V690H350 M140 545H145 M223 545H350 M140 545V575 M140 641V690 M350 465V545 M350 545H460 M350 545V560 M350 610V625 M350 690H460"/><path d="M350 560V563 M350 607V610"/><rect x="341" y="563" width="18" height="44" fill="white"/><circle cx="350" cy="545" r="5" fill="#18242b"/><circle cx="350" cy="690" r="5" fill="#18242b"/><circle cx="460" cy="545" r="6" fill="white"/><circle cx="460" cy="690" r="6" fill="white"/>
+ <!-- d --> <path d="M680 465H745 M823 465H950 M680 465V690H950 M740 545H745 M823 545H950 M740 545V575 M740 641V690 M950 465V545 M950 545H1060 M950 545V560 M950 610V625 M950 690H1060"/><path d="M950 560V563 M950 607V610"/><rect x="941" y="563" width="18" height="44" fill="white"/><circle cx="950" cy="545" r="5" fill="#18242b"/><circle cx="950" cy="690" r="5" fill="#18242b"/><circle cx="1060" cy="545" r="6" fill="white"/><circle cx="1060" cy="690" r="6" fill="white"/>
 </g>
 <use href="#diode-right" x="145" y="90"/><use href="#resistor" x="350" y="90"/><use href="#battery-neg" x="80" y="175"/><use href="#battery-neg" x="350" y="215"/>
 <use href="#diode-right" x="745" y="90"/><use href="#resistor" x="950" y="90"/><use href="#battery-neg" x="680" y="175"/><use href="#battery-neg" x="950" y="215"/>

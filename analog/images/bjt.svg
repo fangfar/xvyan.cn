@@ -5,7 +5,7 @@
  <path d="M420 250V190 M420 120V75H670 M670 75H790 M790 75V115 M790 185V205 M790 205H650"/>
  <path d="M515 220V280 M515 237L565 210V205H650 M515 263L565 295V485 M790 205H820 M836 205H900V290"/>
  <path d="M250 225V275 M266 225V275 M820 180V230 M836 180V230"/>
- <rect x="149" y="280" width="22" height="70" fill="white"/><rect x="409" y="120" width="22" height="70" fill="white"/><rect x="779" y="115" width="22" height="70" fill="white"/><rect x="889" y="290" width="22" height="70" fill="white"/>
+ <path d="M160 280V293 M160 337V350"/><rect x="151" y="293" width="18" height="44" fill="white"/><path d="M420 120V133 M420 177V190"/><rect x="411" y="133" width="18" height="44" fill="white"/><path d="M790 115V128 M790 172V185"/><rect x="781" y="128" width="18" height="44" fill="white"/><path d="M900 290V303 M900 347V360"/><rect x="891" y="303" width="18" height="44" fill="white"/>
  <circle cx="160" cy="385" r="20"/><circle cx="420" cy="250" r="5" fill="#1b2c35"/><circle cx="790" cy="205" r="5" fill="#1b2c35"/><circle cx="565" cy="485" r="5" fill="#1b2c35"/>
  <path d="M565 485V500 M544 500H586 M550 508H580 M557 516H573"/>
 </g>

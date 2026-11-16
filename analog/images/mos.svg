@@ -5,7 +5,7 @@
  <path d="M160 290V340 M176 290V340 M350 210H260V225 M260 295V315 M260 315H350 M520 255V375"/>
  <path d="M585 235V265 M585 285V325 M585 345V375 M585 250H650 M650 250V175 M650 105V75 M585 360H650V395 M650 465V520"/>
  <path d="M585 305H695V385H650 M695 385V360 M650 395H760V420 M760 436V520 M650 250H760 M776 250H850 M760 225V275 M776 225V275 M740 420H780 M740 436H780"/>
- <rect x="339" y="105" width="22" height="70" fill="white"/><rect x="339" y="390" width="22" height="70" fill="white"/><rect x="249" y="225" width="22" height="70" fill="white"/><rect x="639" y="105" width="22" height="70" fill="white"/><rect x="639" y="395" width="22" height="70" fill="white"/>
+ <path d="M350 105V118 M350 162V175"/><rect x="341" y="118" width="18" height="44" fill="white"/><path d="M350 390V403 M350 447V460"/><rect x="341" y="403" width="18" height="44" fill="white"/><path d="M260 225V238 M260 282V295"/><rect x="251" y="238" width="18" height="44" fill="white"/><path d="M650 105V118 M650 162V175"/><rect x="641" y="118" width="18" height="44" fill="white"/><path d="M650 395V408 M650 452V465"/><rect x="641" y="408" width="18" height="44" fill="white"/>
  <path d="M650 520V535 M629 535H671 M636 543H664 M642 551H658"/>
  <circle cx="90" cy="315" r="6" fill="white"/><circle cx="90" cy="520" r="6" fill="white"/><circle cx="850" cy="250" r="6" fill="white"/><circle cx="880" cy="520" r="6" fill="white"/>
  <circle cx="260" cy="315" r="5" fill="#1b2c35"/><circle cx="350" cy="210" r="5" fill="#1b2c35"/><circle cx="650" cy="250" r="5" fill="#1b2c35"/><circle cx="650" cy="385" r="5" fill="#1b2c35"/><circle cx="650" cy="520" r="5" fill="#1b2c35"/>

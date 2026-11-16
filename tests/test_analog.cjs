@@ -16,10 +16,10 @@ for (const question of questions) {
   if (question.answerImage) assert.ok(fs.existsSync(path.join(root, 'images', `${question.answerImage}.png`)), question.id);
 }
 const diagram = name => fs.readFileSync(path.join(root, 'images', `${name}.svg`), 'utf8');
-for (const name of ['26', '27', '28', '210']) {
+for (const name of ['26', '27', '28', '210', '36', '37', '39', 'bjt', 'mos', 'diff', 'bjt-dc', 'bjt-ac']) {
   const dimensions = [...diagram(name).matchAll(/<rect [^>]*width="([\d.]+)" height="([\d.]+)"/g)];
   assert.ok(dimensions.length, `${name}: resistor symbols`);
-  for (const [, width, height] of dimensions) assert.ok(Number(width) <= 70 && Number(height) <= 70, `${name}: oversized resistor`);
+  for (const [, width, height] of dimensions) assert.ok(Number(width) <= 44 && Number(height) <= 44, `${name}: oversized resistor`);
 }
 assert.ok(diagram('27').includes('M500 295H465V310'), '2.7 non-inverting connection exits the amplifier');
 assert.ok(diagram('28').includes('M740 220V290'), '2.8 feedback joins outside the amplifier');
