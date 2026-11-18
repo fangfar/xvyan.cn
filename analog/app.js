@@ -74,12 +74,20 @@ function go(index){
   button.addEventListener('click',()=>openImage(figure.querySelector('img')));
   figure.append(button);
  });
- $('result').innerHTML=q.result;$('answer-source').textContent=q.source||'独立推导';
+ const result=$('result');
+ result.innerHTML=q.result;$('answer-source').textContent=q.source||'独立推导';
  if(reviewKey){
-  document.querySelectorAll('#question-body img:not(.formula), #options img:not(.formula), #steps img:not(.formula), #result img:not(.formula)').forEach(img=>{
+  const letter=q.result.trim();
+  if(/^[A-D]$/.test(letter)){
+   const correct=options.children[letter.charCodeAt(0)-65];
+   if(correct) result.replaceChildren(correct.cloneNode(true));
+  }
+  document.querySelectorAll('#question-body img, #options img, #steps img, #result img').forEach(img=>{
+   if(img.matches('.math-fallback')) return;
    if(img.closest('.worked-figure')) return;
    const button=document.createElement('button');
    button.type='button';button.className='image-button';
+   if(img.classList.contains('review-figure')) button.classList.add('figure-button');
    button.setAttribute('aria-label',`放大查看${img.alt}`);
    button.addEventListener('click',()=>openImage(img));
    img.replaceWith(button);button.append(img);

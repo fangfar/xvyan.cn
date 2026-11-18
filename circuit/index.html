@@ -6,9 +6,10 @@
   <meta name="description" content="电路分析基础十周作业逐题复习，包含题图、学习通参考答案和独立推导。">
   <meta name="color-scheme" content="light">
   <title>电路分析基础 · 作业复习</title>
-  <link rel="stylesheet" href="../analog/style.css?v=20261118-circuit">
-  <script src="questions.js" defer></script>
-  <script src="../analog/app.js?v=20261118-circuit" defer></script>
+  <link rel="stylesheet" href="../analog/style.css?v=20261118-circuit2">
+  <link rel="stylesheet" href="style.css?v=20261118-circuit2">
+  <script src="questions.js?v=20261118-circuit2" defer></script>
+  <script src="../analog/app.js?v=20261118-circuit2" defer></script>
 </head>
 <body data-review-key="circuit-review-mastered-v1">
   <a class="skip" href="#problem">跳到题目</a>
@@ -28,15 +29,15 @@
         <div class="breadcrumb" id="breadcrumb"></div>
         <div class="title-line"><div><h1 id="question-title"></h1><p id="question-subtitle"></p></div><span class="counter" id="counter"></span></div>
         <section class="paper" aria-labelledby="problem-title">
-          <div class="section-label"><h2 id="problem-title">题目</h2><span id="question-kind" class="question-kind"></span></div>
+          <div class="section-label"><h2 id="problem-title">题目</h2><span id="question-kind" hidden></span></div>
           <div id="question-body" class="question-body"></div>
           <div id="options" class="options"></div>
-          <div class="paper-bottom"><span>先自己想一想，再展开解答</span><button class="answer-toggle" id="show-answer" type="button" aria-expanded="false" aria-controls="solution">查看解答 <span aria-hidden="true">↗</span></button></div>
+          <div class="paper-bottom"><button class="answer-toggle" id="show-answer" type="button" aria-expanded="false" aria-controls="solution">查看解答 <span aria-hidden="true">↗</span></button></div>
         </section>
         <section id="solution" class="solution" hidden aria-labelledby="solution-title">
           <div class="section-label"><h2 id="solution-title">参考解答</h2><span class="answer-source" id="answer-source"></span></div>
-          <div id="steps" class="steps"></div>
           <div class="takeaway"><span>答案</span><div id="result"></div></div>
+          <div id="steps" class="steps"></div>
           <div class="master-row"><div><strong>这道题会了吗？</strong><small>理解思路后，可以标记为已掌握。</small></div><button id="mastered" class="master-button" type="button" aria-pressed="false">标记为已掌握</button></div>
         </section>
         <div class="pager"><button id="previous" type="button">← <span>上一题</span></button><span id="pager-label"></span><button id="next" type="button"><span>下一题</span> →</button></div>
@@ -52,7 +53,7 @@
         <button id="close-dialog" type="button" aria-label="关闭图片">关闭 ×</button>
       </div>
     </div>
-    <div class="image-scroll" tabindex="0" role="region" aria-label="图片浏览区"><img id="large-image" src="images/bf4f39cdedb1bc39a20b.png" alt="题图"></div>
+    <div class="image-scroll" tabindex="0" role="region" aria-label="图片浏览区"><img id="large-image" src="images/circuit-1-1.svg" alt="题图"></div>
     <p id="image-hint" hidden>滑动图片查看细节</p>
   </dialog>
   <noscript>请在浏览器中启用 JavaScript 以查看题目和解答。</noscript>

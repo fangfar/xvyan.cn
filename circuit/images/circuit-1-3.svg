@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 132" role="img" aria-labelledby="diagram-title">
+<title id="diagram-title">图 1.1　从 4 V 端经 2 Ω 到 A 点，再经 4 Ω 接到 10 V 端</title>
+<style>
+  .wires { fill: white; stroke: #213946; stroke-width: 2.3; stroke-linecap: round; stroke-linejoin: round; }
+  .current { stroke: #25566a; }
+  .labels { fill: #162e3c; font: 19px 'Cambria Math', 'Times New Roman', serif; }
+  .polarity { fill: #9a4c35; }
+</style>
+
+<g class="wires">
+  <path d="M56 71H108 M144 71H241 M277 71H322" />
+<rect x="108" y="64" width="36" height="14" rx="0.8" />
+<rect x="241" y="64" width="36" height="14" rx="0.8" />
+<circle cx="56" cy="71" r="4"/>
+<circle cx="190" cy="71" r="3.5" fill="#213946"/>
+<circle cx="322" cy="71" r="4"/>
+</g>
+<g class="labels">
+  <text x="15" y="77">4 V</text>
+<text x="111" y="48">2 Ω</text>
+<text x="183" y="48">A</text>
+<text x="244" y="48">4 Ω</text>
+<text x="332" y="77">10 V</text>
+</g>
+</svg>

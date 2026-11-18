@@ -1,0 +1,94 @@
+.layout { grid-template-columns: 248px minmax(0, 1fr); }
+.nav-heading { cursor: pointer; }
+.section-label { margin-bottom: 16px; }
+.section-label h2 { font-size: 17px; }
+.answer-source { color: #446356; font-size: 12px; text-align: right; }
+.question-body, .step-copy, .step-content p, .option {
+  color: #273b46;
+  font-size: 16px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.question-body p, .step-copy p, .takeaway p { margin: 0 0 .6em; }
+.question-body p:last-child, .step-copy p:last-child, .takeaway p:last-child { margin-bottom: 0; }
+.options { gap: 10px; grid-template-columns: minmax(0, 1fr); }
+.options:empty, .steps:empty { display: none; }
+.options:not(:has(.figure-button)) {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+}
+.option {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+  padding: 10px 12px;
+}
+.option > div { min-width: 0; }
+.option p { margin: 0; }
+.option .option-letter { flex: 0 0 24px; color: #375e51; font-family: inherit; }
+.paper-bottom { justify-content: flex-end; margin-top: 20px; padding-top: 14px; }
+.takeaway {
+  display: block;
+  margin: 0 0 20px;
+  padding: 14px 16px;
+  overflow-x: auto;
+}
+.takeaway > span { display: block; margin-bottom: 5px; color: #416457; font-weight: 600; }
+.takeaway #result, .takeaway .option > div { font: inherit; }
+.takeaway #result { font-size: 17px; color: #23453c; }
+.takeaway .option { padding: 0; border: 0; background: transparent; color: inherit; }
+.step-content h3 { font-size: 15px; }
+.step { margin-bottom: 18px; }
+
+.question-body img, .options img, .solution img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+.image-button {
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: white;
+  cursor: zoom-in;
+  vertical-align: middle;
+}
+.image-button:hover { outline: 1px solid #89a799; }
+.figure-button {
+  display: block;
+  width: fit-content;
+  margin: 12px auto;
+  border: 1px solid #dce5df;
+  padding: 6px;
+}
+.figure-button img { display: block; }
+.figure-button::after {
+  display: block;
+  content: "放大查看 ↗" / "";
+  padding-top: 3px;
+  color: #416457;
+  font-size: 12px;
+}
+.image-scroll img { width: auto; max-width: 100%; }
+.image-scroll img[src$=".svg"] { width: 100%; }
+.is-zoomed .image-scroll img { width: max(600px, 145%); max-width: none; }
+.math-inline {
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  vertical-align: middle;
+}
+.math-inline math { display: none; }
+.math-inline .math-fallback { max-height: 2.4em; width: auto; }
+@supports (math-style: normal) {
+  .math-inline math { display: inline math; font-size: 1.07em; }
+  .math-inline .math-fallback { display: none; }
+}
+
+@media (max-width: 700px) {
+  .paper, .solution { padding-inline: 14px; }
+  .option { padding-block: 9px; }
+  .figure-button { padding: 4px; }
+  .takeaway { padding: 12px; }
+}

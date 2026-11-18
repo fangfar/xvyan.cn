@@ -118,6 +118,7 @@ class SiteTests(unittest.TestCase):
         self.assertEqual([len(group["items"]) for group in groups], [13, 13, 14, 13, 21, 10, 13, 12, 14, 10])
         seen = set()
         source_counts = {}
+        typeset_formulas = 0
         for week, group in enumerate(groups, 1):
             for number, question in enumerate(group["items"], 1):
                 with self.subTest(question=question["id"]):
@@ -129,12 +130,19 @@ class SiteTests(unittest.TestCase):
                     source_counts[source] = source_counts.get(source, 0) + 1
                     markup = [question["body"], question["result"], *question["options"]]
                     markup.extend(step["body"] for step in question["steps"])
-                    for link in Document("".join(markup)).links:
-                        self.assertRegex(link, r"^images/([a-f0-9]{20}|phasors-9-1[234])\.(png|jpg)$")
+                    doc = Document("".join(markup))
+                    math = sum(tag == "math" for tag, _ in doc.tags)
+                    fallbacks = sum(tag == "img" and attrs.get("class") == "math-fallback" for tag, attrs in doc.tags)
+                    self.assertEqual(math, fallbacks)
+                    typeset_formulas += math
+                    for link in doc.links:
+                        self.assertRegex(link, r"^images/(?:([a-f0-9]{20}|phasors-9-1[234])\.(png|jpg)|circuit-\d+-\d+\.svg)$")
                         self.assertTrue((folder / link).is_file(), link)
                         seen.add(link)
         self.assertEqual(source_counts, {"学习通正确答案": 90, "学习通答案解析": 6, "独立推导 · 待学习通核对": 37})
-        self.assertEqual(seen, {p.relative_to(folder).as_posix() for p in (folder / "images").iterdir()})
+        self.assertEqual(typeset_formulas, 294)
+        self.assertEqual(sum(link.endswith(".svg") for link in seen), 7)
+        self.assertEqual(seen, {f"images/{p.name}" for p in (ROOT / "circuit/images").iterdir()})
 
     def test_articles_are_removed_from_build(self):
         home = self.pages[site.OUT / "index.html"]

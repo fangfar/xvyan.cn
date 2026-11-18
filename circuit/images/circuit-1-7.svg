@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 277 195" role="img" aria-labelledby="diagram-title">
+<title id="diagram-title">图 1.4　左侧电压源上正下负，右侧电流源方向向下</title>
+<style>
+  .wires { fill: white; stroke: #213946; stroke-width: 2.3; stroke-linecap: round; stroke-linejoin: round; }
+  .current { stroke: #25566a; }
+  .labels { fill: #162e3c; font: 19px 'Cambria Math', 'Times New Roman', serif; }
+  .polarity { fill: #9a4c35; }
+</style>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10L3 5Z" fill="#25566a"/></marker>
+</defs>
+<g class="wires">
+  <path d="M84 77V31H203V77 M84 117V158H203V117" />
+<circle cx="84" cy="97" r="20"/>
+<circle cx="203" cy="97" r="20"/>
+<path d="M203 85L203 108" class="current" marker-end="url(#arrow)"/>
+</g>
+<g class="labels">
+  <text x="20" y="104"><tspan font-style="italic">U<tspan baseline-shift="sub" font-size="70%">s</tspan></tspan></text>
+<text x="49" y="72" class="polarity">+</text>
+<text x="49" y="134" class="polarity">−</text>
+<text x="232" y="104"><tspan font-style="italic">I<tspan baseline-shift="sub" font-size="70%">s</tspan></tspan></text>
+</g>
+</svg>

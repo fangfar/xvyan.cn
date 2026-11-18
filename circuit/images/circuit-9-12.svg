@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 555 234" role="img" aria-labelledby="diagram-title">
+<title id="diagram-title">输入串联 R₁，随后分为电容支路和 R₂ 与电感的串联支路</title>
+<style>
+  .wires { fill: white; stroke: #213946; stroke-width: 2.3; stroke-linecap: round; stroke-linejoin: round; }
+  .current { stroke: #25566a; }
+  .labels { fill: #162e3c; font: 19px 'Cambria Math', 'Times New Roman', serif; }
+  .polarity { fill: #9a4c35; }
+</style>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10L3 5Z" fill="#25566a"/></marker>
+</defs>
+<g class="wires">
+  <circle cx="42" cy="106" r="4"/>
+<circle cx="42" cy="204" r="4"/>
+<path d="M46 106H112 M148 106H193 M193 106V53H312 M320 53H457V106H491V204H46 M193 106V149H247 M283 149H350 M398 149H457V106" />
+<rect x="112" y="99" width="36" height="14" rx="0.8" />
+<rect x="247" y="142" width="36" height="14" rx="0.8" />
+<path d="M312 41v24M320 41v24" />
+<path d="M350 149q6 -15 12 0q6 -15 12 0q6 -15 12 0q6 -15 12 0" />
+<circle cx="193" cy="106" r="3.5" fill="#213946"/>
+<circle cx="457" cy="106" r="3.5" fill="#213946"/>
+<path d="M52 106L95 106" class="current" marker-end="url(#arrow)"/>
+<path d="M207 53L250 53" class="current" marker-end="url(#arrow)"/>
+<path d="M198 149L234 149" class="current" marker-end="url(#arrow)"/>
+</g>
+<g class="labels">
+  <text x="65" y="91"><tspan font-style="italic">İ</tspan></text>
+<text x="122" y="90"><tspan font-style="italic">R<tspan baseline-shift="sub" font-size="70%">1</tspan></tspan></text>
+<text x="124" y="136"><tspan font-style="italic">U̇<tspan baseline-shift="sub" font-size="70%">1</tspan></tspan></text>
+<text x="224" y="40"><tspan font-style="italic">İ<tspan baseline-shift="sub" font-size="70%">1</tspan></tspan></text>
+<text x="206" y="134"><tspan font-style="italic">İ<tspan baseline-shift="sub" font-size="70%">2</tspan></tspan></text>
+<text x="286" y="32">−jX<tspan baseline-shift="sub" font-size="70%">C</tspan></text>
+<text x="255" y="135"><tspan font-style="italic">R<tspan baseline-shift="sub" font-size="70%">2</tspan></tspan></text>
+<text x="359" y="132">jX<tspan baseline-shift="sub" font-size="70%">L</tspan></text>
+<text x="33" y="158"><tspan font-style="italic">U̇</tspan></text>
+<text x="37" y="126" class="polarity">+</text>
+<text x="37" y="188" class="polarity">−</text>
+<text x="194" y="177" class="polarity">+</text>
+<text x="310" y="186"><tspan font-style="italic">U̇<tspan baseline-shift="sub" font-size="70%">2</tspan></tspan></text>
+<text x="445" y="177" class="polarity">−</text>
+</g>
+</svg>

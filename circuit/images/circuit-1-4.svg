@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268 203" role="img" aria-labelledby="diagram-title">
+<title id="diagram-title">图 1.2　A 端为正，B 端为负，图示电流参考箭头指向 A</title>
+<style>
+  .wires { fill: white; stroke: #213946; stroke-width: 2.3; stroke-linecap: round; stroke-linejoin: round; }
+  .current { stroke: #25566a; }
+  .labels { fill: #162e3c; font: 19px 'Cambria Math', 'Times New Roman', serif; }
+  .polarity { fill: #9a4c35; }
+</style>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10L3 5Z" fill="#25566a"/></marker>
+</defs>
+<g class="wires">
+  <path d="M71 34H202V73 M71 160H202V121" />
+<circle cx="71" cy="34" r="4"/>
+<circle cx="71" cy="160" r="4"/>
+<path d="M170 34L113 34" class="current" marker-end="url(#arrow)"/>
+<rect x="183" y="73" width="38" height="48"/>
+</g>
+<g class="labels">
+  <text x="44" y="40">A</text>
+<text x="44" y="166">B</text>
+<text x="132" y="23"><tspan font-style="italic">I</tspan></text>
+<text x="68" y="104"><tspan font-style="italic">U</tspan></text>
+<text x="68" y="65" class="polarity">+</text>
+<text x="68" y="136" class="polarity">−</text>
+</g>
+</svg>
