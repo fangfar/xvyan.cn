@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 328 282" role="img" aria-labelledby="title">
+  <title id="title">共射放大器的直流通路</title>
+  <style>.wire{fill:none;stroke:#172530;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.dot{fill:#172530;stroke:none}.terminal{fill:#fff}.label{fill:#172530;font:italic 17px Cambria,Georgia,serif}.sub{font-size:72%;baseline-shift:sub}</style>
+  <g class="wire">
+    <path d="M92 33H251 M92 33V56 M92 96V143H178 M92 143V183 M92 223V251H210 M210 33V55 M210 95V108L178 128 M178 153L210 174V187 M178 117V164 M210 227V251"/>
+    <rect x="86" y="56" width="12" height="40"/>
+    <rect x="86" y="183" width="12" height="40"/>
+    <rect x="204" y="55" width="12" height="40"/>
+    <rect x="204" y="187" width="12" height="40"/>
+    <path class="dot" d="M210 174L197 173L204 163Z"/>
+    <path d="M210 251v10m-10 0h20"/>
+    <circle class="terminal" cx="251" cy="33" r="3.2"/>
+    <circle class="dot" cx="210" cy="33" r="3"/>
+    <circle class="dot" cx="92" cy="143" r="3"/>
+    <path d="M119 132H148 M143 129L148 132L143 135"/>
+  </g>
+  <g class="label">
+    <text x="262" y="39">+V<tspan class="sub">CC</tspan></text>
+    <text x="55" y="81">R<tspan class="sub">b1</tspan></text>
+    <text x="55" y="210">R<tspan class="sub">b2</tspan></text>
+    <text x="225" y="81">R<tspan class="sub">c</tspan></text>
+    <text x="225" y="212">R<tspan class="sub">e</tspan></text>
+    <text x="127" y="122">I<tspan class="sub">B</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 447 312" role="img" aria-labelledby="title">
+  <title id="title">简答 3：基极分压式射极偏置放大电路</title>
+  <style>.wire{fill:none;stroke:#172530;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.dot{fill:#172530;stroke:none}.terminal{fill:#fff}.label{fill:#172530;font:italic 17px Cambria,Georgia,serif}.sub{font-size:72%;baseline-shift:sub}</style>
+  <g class="wire">
+    <path d="M142 28H278 M142 28V53 M142 101V146 M142 146V188 M142 236V272 M232 28V45 M232 93V122 M232 122V140L204 155 M204 164L232 183V194 M204 139V182 M38 163V146H86 M94 146H204 M38 205V225 M38 261V272H375 M232 194V212 M232 250V272 M232 194H291V223 M291 231V272 M232 122H300 M308 122H375V169 M375 215V272 M86 131V161 M94 131V161 M300 107V137 M308 107V137 M277 223H305 M277 231H305"/>
+    <rect x="136" y="53" width="12" height="48"/>
+    <rect x="136" y="188" width="12" height="48"/>
+    <rect x="226" y="45" width="12" height="48"/>
+    <rect x="226" y="212" width="12" height="38"/>
+    <rect x="369" y="169" width="12" height="46"/>
+    <rect x="32" y="163" width="12" height="42"/>
+    <circle cx="38" cy="243" r="18"/>
+    <path class="dot" d="M232 183L218 181L226 171Z"/>
+    <path d="M232 272v10m-10 0h20"/>
+    <circle class="terminal" cx="278" cy="28" r="3.2"/>
+    <circle class="dot" cx="232" cy="28" r="3"/>
+    <circle class="dot" cx="142" cy="146" r="3"/>
+    <circle class="dot" cx="232" cy="122" r="3"/>
+    <circle class="dot" cx="232" cy="194" r="3"/>
+    <circle class="dot" cx="142" cy="272" r="3"/>
+    <circle class="dot" cx="232" cy="272" r="3"/>
+    <circle class="dot" cx="291" cy="272" r="3"/>
+  </g>
+  <g class="label">
+    <text x="289" y="33">+V<tspan class="sub">CC</tspan></text>
+    <text x="105" y="84">R<tspan class="sub">b1</tspan></text>
+    <text x="105" y="219">R<tspan class="sub">b2</tspan></text>
+    <text x="201" y="73">R<tspan class="sub">c</tspan></text>
+    <text x="201" y="237">R<tspan class="sub">e</tspan></text>
+    <text x="345" y="199">R<tspan class="sub">L</tspan></text>
+    <text x="9" y="190">R<tspan class="sub">s</tspan></text>
+    <text x="9" y="249">v<tspan class="sub">s</tspan></text>
+    <text x="5" y="227">+</text>
+    <text x="5" y="270">−</text>
+    <text x="68" y="121">C<tspan class="sub">1</tspan></text>
+    <text x="101" y="139">+</text>
+    <text x="313" y="107">C<tspan class="sub">2</tspan></text>
+    <text x="279" y="113">+</text>
+    <text x="312" y="239">C<tspan class="sub">e</tspan></text>
+    <text x="305" y="219">+</text>
+    <text x="401" y="164">+</text>
+    <text x="400" y="201">v<tspan class="sub">o</tspan></text>
+    <text x="401" y="256">−</text>
+  </g>
+</svg>

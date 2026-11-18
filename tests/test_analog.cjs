@@ -5,15 +5,14 @@ const vm = require('node:vm');
 
 const root = path.join(__dirname, '..', 'dist', 'analog');
 const context = {};
-vm.runInNewContext(fs.readFileSync(path.join(root, 'questions.js'), 'utf8') + fs.readFileSync(path.join(root, 'solutions.js'), 'utf8') + '; globalThis.groupsForTest = groups;', context);
+vm.runInNewContext(['questions.js', 'solutions.js', 'stage.js'].map(name => fs.readFileSync(path.join(root, name), 'utf8')).join('\n') + '; globalThis.groupsForTest = groups;', context);
 const questions = context.groupsForTest.flatMap(group => group.items);
-assert.equal(questions.length, 19);
+assert.equal(questions.length, 27);
 assert.equal(new Set(questions.map(question => question.id)).size, questions.length);
-const vector = new Set(['26', '27', '28', '210', '36', '37', '39', 'bjt', 'mos', 'diff', 'curve1', 'curve2']);
 for (const question of questions) {
   assert.ok(question.description && question.key && question.result && question.steps.length, question.id);
-  if (question.image) assert.ok(fs.existsSync(path.join(root, 'images', `${question.image}.${vector.has(question.image) ? 'svg' : 'png'}`)), question.id);
-  if (question.answerImage) assert.ok(fs.existsSync(path.join(root, 'images', `${question.answerImage}.png`)), question.id);
+  if (question.image) assert.ok(fs.existsSync(path.join(root, 'images', `${question.image}.svg`)), question.id);
+  if (question.answerImage) assert.ok(fs.existsSync(path.join(root, 'images', `${question.answerImage}.svg`)), question.id);
 }
 const diagram = name => fs.readFileSync(path.join(root, 'images', `${name}.svg`), 'utf8');
 for (const name of ['26', '27', '28', '210', '36', '37', '39', 'bjt', 'mos', 'diff', 'bjt-dc', 'bjt-ac']) {
@@ -31,4 +30,12 @@ assert.ok(diagram('28').includes('M690 360H720'), '2.8 non-inverting connection 
 assert.ok(questions.find(q => q.id === '6.6').description.includes('10 mV'));
 for (const name of ['bjt-dc.svg', 'bjt-ac.svg']) assert.ok(fs.existsSync(path.join(root, 'images', name)));
 assert.ok(!fs.readFileSync(path.join(root, 'questions.js'), 'utf8').includes('你在学习通上原选'));
-console.log('Analog review checks passed: 19 questions, unique IDs, answers, and all question images.');
+const stage = questions.filter(question => question.id.startsWith('stage-'));
+assert.equal(stage.filter(question => question.options?.length === 4).length, 5);
+assert.equal(stage.filter(question => question.image).length, 3);
+for (const question of questions) {
+  for (const item of question.steps) {
+    for (const [, image] of item.body.matchAll(/src="images\/([^"?]+)/g)) assert.ok(fs.existsSync(path.join(root, 'images', image)), image);
+  }
+}
+console.log('Analog review checks passed: 27 questions, unique IDs, answers, and all question images.');

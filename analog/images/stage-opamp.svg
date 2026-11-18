@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 411 270" role="img" aria-labelledby="title">
+  <title id="title">简答 2：多输入运算放大器</title>
+  <style>.wire{fill:none;stroke:#172530;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.dot{fill:#172530;stroke:none}.terminal{fill:#fff}.label{fill:#172530;font:italic 17px Cambria,Georgia,serif}.sub{font-size:72%;baseline-shift:sub}</style>
+  <g class="wire">
+    <path d="M49 42H82 M116 42H139V105 M49 105H82 M116 105H193 M49 158H82 M116 158H193 M193 85V178L287 132Z M287 132H373 M157 105V42H231 M265 42H306V132 M157 158V183 M157 219V235"/>
+    <path d="M157 235v10m-10 0h20"/>
+    <rect x="82" y="36" width="34" height="12"/>
+    <rect x="82" y="99" width="34" height="12"/>
+    <rect x="82" y="152" width="34" height="12"/>
+    <rect x="231" y="36" width="34" height="12"/>
+    <rect x="151" y="183" width="12" height="36"/>
+    <circle class="terminal" cx="49" cy="42" r="3.2"/>
+    <circle class="terminal" cx="49" cy="105" r="3.2"/>
+    <circle class="terminal" cx="49" cy="158" r="3.2"/>
+    <circle class="terminal" cx="373" cy="132" r="3.2"/>
+    <circle class="dot" cx="139" cy="105" r="3"/>
+    <circle class="dot" cx="157" cy="105" r="3"/>
+    <circle class="dot" cx="157" cy="158" r="3"/>
+    <circle class="dot" cx="306" cy="132" r="3"/>
+  </g>
+  <g class="label">
+    <text x="19" y="46">v<tspan class="sub">i3</tspan></text>
+    <text x="19" y="109">v<tspan class="sub">i2</tspan></text>
+    <text x="19" y="162">v<tspan class="sub">i1</tspan></text>
+    <text x="93" y="30">R</text>
+    <text x="93" y="93">R</text>
+    <text x="89" y="146">2R</text>
+    <text x="238" y="30">2R</text>
+    <text x="171" y="206">2R</text>
+    <text x="197" y="110">−</text>
+    <text x="197" y="163">+</text>
+    <text x="371" y="113">v<tspan class="sub">o</tspan></text>
+  </g>
+</svg>

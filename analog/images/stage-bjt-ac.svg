@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 484 227" role="img" aria-labelledby="title">
+  <title id="title">共射放大器中频小信号等效电路</title>
+  <style>.wire{fill:none;stroke:#172530;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.dot{fill:#172530;stroke:none}.terminal{fill:#fff}.label{fill:#172530;font:italic 17px Cambria,Georgia,serif}.sub{font-size:72%;baseline-shift:sub}</style>
+  <g class="wire">
+    <path d="M37 57H61 M95 57H208 M37 57V119 M37 153V177H451 M116 57V93 M116 129V177 M189 57V93 M189 129V177 M266 57H451 M278 57V98 M278 134V177 M344 57V113 M344 147V177 M411 57V98 M411 134V177"/>
+    <rect x="61" y="51" width="34" height="12"/>
+    <rect x="110" y="93" width="12" height="36"/>
+    <rect x="183" y="93" width="12" height="36"/>
+    <rect x="272" y="98" width="12" height="36"/>
+    <rect x="405" y="98" width="12" height="36"/>
+    <circle cx="37" cy="136" r="17"/>
+    <path d="M32 130H42 M37 125V135 M32 143H42 M344 113L361 130L344 147L327 130Z M344 121V139 M340 135L344 139L348 135 M150 68H172 M167 65L172 68L167 71"/>
+    <path d="M230 177v10m-10 0h20"/>
+    <circle class="terminal" cx="208" cy="57" r="3.2"/>
+    <circle class="terminal" cx="266" cy="57" r="3.2"/>
+    <circle class="terminal" cx="451" cy="57" r="3.2"/>
+    <circle class="terminal" cx="451" cy="177" r="3.2"/>
+    <circle class="dot" cx="116" cy="57" r="3"/>
+    <circle class="dot" cx="189" cy="57" r="3"/>
+    <circle class="dot" cx="278" cy="57" r="3"/>
+    <circle class="dot" cx="344" cy="57" r="3"/>
+    <circle class="dot" cx="411" cy="57" r="3"/>
+    <circle class="dot" cx="116" cy="177" r="3"/>
+    <circle class="dot" cx="189" cy="177" r="3"/>
+    <circle class="dot" cx="278" cy="177" r="3"/>
+    <circle class="dot" cx="344" cy="177" r="3"/>
+    <circle class="dot" cx="411" cy="177" r="3"/>
+    <circle class="dot" cx="230" cy="177" r="3"/>
+  </g>
+  <g class="label">
+    <text x="11" y="140">v<tspan class="sub">s</tspan></text>
+    <text x="69" y="46">R<tspan class="sub">s</tspan></text>
+    <text x="65" y="113">R<tspan class="sub">b1</tspan></text>
+    <text x="83" y="113"> ∥ </text>
+    <text x="64" y="133">R<tspan class="sub">b2</tspan></text>
+    <text x="201" y="113">r<tspan class="sub">be</tspan></text>
+    <text x="151" y="89">i<tspan class="sub">b</tspan></text>
+    <text x="198" y="41">v<tspan class="sub">i</tspan></text>
+    <text x="291" y="122">R<tspan class="sub">c</tspan></text>
+    <text x="354" y="156">βi<tspan class="sub">b</tspan></text>
+    <text x="424" y="122">R<tspan class="sub">L</tspan></text>
+    <text x="447" y="42">v<tspan class="sub">o</tspan></text>
+    <text x="458" y="82">+</text>
+    <text x="458" y="173">−</text>
+  </g>
+</svg>

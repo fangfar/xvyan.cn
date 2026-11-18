@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 460" role="img" aria-labelledby="title">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="46 0 708 445" role="img" aria-labelledby="title">
 <title id="title">增强型 NMOS 的输出特性，Q 点为 VDS 一伏、漏极电流约三毫安</title>
 <g fill="none" stroke="#202d34" stroke-width="3" stroke-linecap="round"><path d="M95 380H740 M95 380V40"/><path d="M95 380V389 M190 380V389 M285 380V389 M380 380V389 M475 380V389 M570 380V389 M665 380V389 M86 350H95 M86 290H95 M86 260H95 M86 110H95"/></g>
 <path d="M95 380 C130 362 170 350 190 350 H700 M95 380 C126 338 160 307 190 290 C220 276 255 265 285 260 H700 M95 380 C150 275 245 145 380 110 H700" fill="none" stroke="#283a46" stroke-width="4"/>

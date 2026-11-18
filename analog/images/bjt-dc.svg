@@ -1,8 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-labelledby="t"><title id="t">共射极放大电路直流通路与中频小信号等效电路</title>
-<g fill="none" stroke="#1b2c35" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
-<!-- DC: supply, bias and collector -->
-<path d="M100 80H420 M100 80V125 M100 195V250H220 M300 80V125 M300 195V205 M300 205H265 M220 215V285 M220 230L265 205 M220 270L265 305V380 M265 380V400 M245 400H285"/><path d="M100 125V138 M100 182V195"/><rect x="91" y="138" width="18" height="44" fill="white"/><path d="M300 125V138 M300 182V195"/><rect x="291" y="138" width="18" height="44" fill="white"/><circle cx="300" cy="205" r="5" fill="#1b2c35"/><path d="M252 289l13 16 -21 -6z" fill="#1b2c35"/>
-<!-- AC: source, Rs, input, rb, rbe, controlled source, collector loads -->
-<path d="M510 265V245H535 M600 245H665 M665 245H750 M750 245H880 M880 245H945 M510 305V380H945 M665 245V270 M665 340V380 M750 245V270 M750 340V380 M880 245V275 M880 345V380 M945 245V270 M945 340V380 M790 245V270 M790 340V380 M750 380V400 M730 400H770"/>
-<circle cx="510" cy="285" r="20"/><path d="M535 245H545.5 M589.5 245H600"/><rect x="545.5" y="236" width="44" height="18" fill="white"/><path d="M665 270V283 M665 327V340"/><rect x="656" y="283" width="18" height="44" fill="white"/><path d="M750 270V283 M750 327V340"/><rect x="741" y="283" width="18" height="44" fill="white"/><path d="M945 270V283 M945 327V340"/><rect x="936" y="283" width="18" height="44" fill="white"/><path d="M790 270V283 M790 327V340"/><rect x="781" y="283" width="18" height="44" fill="white"/><circle cx="880" cy="310" r="35"/><path d="M880 292v30 M873 315l7 9 7 -9"/><circle cx="665" cy="245" r="5" fill="#1b2c35"/><circle cx="750" cy="245" r="5" fill="#1b2c35"/><circle cx="880" cy="245" r="5" fill="#1b2c35"/><circle cx="945" cy="245" r="5" fill="#1b2c35"/><circle cx="750" cy="380" r="5" fill="#1b2c35"/><circle cx="970" cy="245" r="6" fill="white"/><path d="M945 245H964"/>
-</g><g font-family="Arial, Microsoft YaHei, sans-serif" fill="#263843" font-size="21"><text x="180" y="35">（a）直流通路：电容开路</text><text x="630" y="35">（b）中频小信号等效：电容短路</text><text x="425" y="88">＋12 V</text><text x="45" y="165">Rᵦ</text><text x="310" y="165">R꜀</text><text x="184" y="254">B</text><text x="270" y="199">C</text><text x="272" y="305">E</text><text x="100" y="445">输入源和负载被耦合电容隔开</text><text x="490" y="292">~</text><text x="520" y="323">vₛ</text><text x="545" y="225">Rₛ</text><text x="616" y="240">vᵢ</text><text x="618" y="315">Rᵦ</text><text x="706" y="315">rᵦₑ</text><text x="805" y="315">R꜀</text><text x="837" y="360">βiᵦ</text><text x="910" y="315">Rₗ</text><text x="978" y="250">vₒ</text><text x="560" y="445">电源为交流地，输出电流源方向由集电极指向发射极</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 294 261" role="img" aria-labelledby="title">
+  <title id="title">共射放大器的直流通路</title>
+  <style>.wire{fill:none;stroke:#172530;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.dot{fill:#172530;stroke:none}.terminal{fill:#fff}.label{fill:#172530;font:italic 17px Cambria,Georgia,serif}.sub{font-size:72%;baseline-shift:sub}</style>
+  <g class="wire">
+    <path d="M83 35H223 M83 35V64 M83 102V140H157 M157 121V163 M157 128L191 111V102 M191 64V35 M157 153L191 177V221"/>
+    <rect x="77" y="64" width="12" height="38"/>
+    <rect x="185" y="64" width="12" height="38"/>
+    <path class="dot" d="M191 177L178 175L185 165Z"/>
+    <path d="M191 221v10m-10 0h20"/>
+    <circle class="dot" cx="191" cy="35" r="3"/>
+    <circle class="terminal" cx="223" cy="35" r="3.2"/>
+    <path d="M105 127H132 M127 124L132 127L127 130"/>
+  </g>
+  <g class="label">
+    <text x="235" y="40">+12 V</text>
+    <text x="45" y="88">R<tspan class="sub">b</tspan></text>
+    <text x="203" y="88">R<tspan class="sub">c</tspan></text>
+    <text x="108" y="118">I<tspan class="sub">B</tspan></text>
+    <text x="165" y="111">C</text>
+    <text x="200" y="182">E</text>
+  </g>
+</svg>

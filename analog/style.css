@@ -12,6 +12,37 @@
 .takeaway div { min-width: 0; overflow-wrap: anywhere; }
 .table-wrap { overscroll-behavior-inline: contain; }
 
+.analog-review .section-label { margin-bottom: 16px; }
+.analog-review .section-label h2 { font-size: 17px; letter-spacing: 0; }
+.analog-review .answer-source { color: #446356; text-align: right; }
+.analog-review .question-body, .analog-review .step-copy, .analog-review .option {
+  color: #273b46;
+  font-size: 16px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.analog-review .options:empty { display: none; }
+.analog-review .nav-heading, .question-hint summary { cursor: pointer; }
+.question-hint { margin-top: 18px; color: #375e51; }
+.question-hint summary { width: fit-content; padding: 10px 0; }
+.question-hint p { margin: 0; padding: 8px 12px; border-left: 2px solid #9bb7a8; background: #f3f7f4; }
+.analog-review .paper-bottom { flex-direction: row; justify-content: flex-end; margin-top: 12px; padding-top: 14px; }
+.analog-review .takeaway { display: block; margin: 0 0 20px; padding: 12px 16px; }
+.analog-review .takeaway > span { display: block; color: #416457; font-weight: 600; }
+.process-title { margin: 0 0 14px; font-size: 15px; font-weight: 700; }
+.analog-review .step-content h3 { font-size: 16px; }
+.analog-review :is(.circuit-figure, .worked-figure, .answer-figure) img {
+  display: block;
+  width: min(100%, 680px);
+  max-height: 420px;
+  object-fit: contain;
+  margin-inline: auto;
+}
+.analog-review :is(.circuit-figure, .worked-figure, .answer-figure) figcaption { color: #52675f; }
+@media (min-width: 1101px) {
+  .analog-review .layout { grid-template-columns: 248px minmax(0, 1fr); }
+}
+
 html:has(.image-dialog[open]) { overflow: hidden; }
 .image-dialog[open] { display: flex; flex-direction: column; }
 .image-dialog { max-height: calc(100dvh - 40px); }
@@ -49,6 +80,7 @@ html:has(.image-dialog[open]) { overflow: hidden; }
   .step-index { width: 22px; height: 22px; line-height: 20px; }
   .takeaway { display: block; padding: 12px; }
   .worked-figure { padding: 6px; }
+  .analog-review :is(.circuit-figure, .worked-figure, .answer-figure) img { max-height: none; }
   .circuit-figure img, .answer-figure img { max-height: none; }
   .answer-toggle, .enlarge, .master-button, .pager button { min-height: 44px; touch-action: manipulation; }
   .pager {

@@ -73,7 +73,7 @@ class SiteTests(unittest.TestCase):
                 self.assertTrue(any(tag == "meta" and a.get("name") == "viewport" for tag, a in doc.tags))
                 scripts = [attrs for tag, attrs in doc.tags if tag == "script"]
                 if path == site.OUT / "analog/index.html":
-                    self.assertEqual([urlsplit(s["src"]).path for s in scripts], ["questions.js", "solutions.js", "app.js"])
+                    self.assertEqual([urlsplit(s["src"]).path for s in scripts], ["questions.js", "solutions.js", "stage.js", "app.js"])
                     self.assertTrue(all("defer" in s for s in scripts))
                     self.assertTrue((site.OUT / "analog/images/mos.svg").is_file())
                     self.assertTrue((site.OUT / "analog/images/37.svg").is_file())

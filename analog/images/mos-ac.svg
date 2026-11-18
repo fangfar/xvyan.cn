@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 221" role="img" aria-labelledby="title">
+  <title id="title">共源放大器中频小信号等效电路</title>
+  <style>.wire{fill:none;stroke:#172530;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.dot{fill:#172530;stroke:none}.terminal{fill:#fff}.label{fill:#172530;font:italic 17px Cambria,Georgia,serif}.sub{font-size:72%;baseline-shift:sub}</style>
+  <g class="wire">
+    <path d="M37 55H61 M95 55H212 M37 55V117 M37 151V177H451 M118 55V95 M118 131V177  M267 55H451 M281 55V97 M281 133V177 M347 55V108 M347 144V177 "/>
+    <rect x="61" y="49" width="34" height="12"/>
+    <rect x="112" y="95" width="12" height="36"/>
+    <rect x="275" y="97" width="12" height="36"/>
+    <path d="M37 55V117 M37 151V177"/>
+    <path d="M347 108L365 126L347 144L329 126Z M347 117V135 M343 131L347 135L351 131"/>
+    <path d="M237 177v10m-10 0h20"/>
+    <circle class="terminal" cx="212" cy="55" r="3.2"/>
+    <circle class="terminal" cx="267" cy="55" r="3.2"/>
+    <circle class="terminal" cx="451" cy="55" r="3.2"/>
+    <circle class="terminal" cx="451" cy="177" r="3.2"/>
+    <circle class="terminal" cx="37" cy="117" r="3.2"/>
+    <circle class="terminal" cx="37" cy="151" r="3.2"/>
+    <circle class="dot" cx="118" cy="55" r="3"/>
+    <circle class="dot" cx="118" cy="177" r="3"/>
+    <circle class="dot" cx="281" cy="55" r="3"/>
+    <circle class="dot" cx="281" cy="177" r="3"/>
+    <circle class="dot" cx="347" cy="55" r="3"/>
+    <circle class="dot" cx="347" cy="177" r="3"/>
+    <circle class="dot" cx="237" cy="177" r="3"/>
+  </g>
+  <g class="label">
+    <text x="11" y="137">v<tspan class="sub">i</tspan></text>
+    <text x="69" y="42">R<tspan class="sub">G</tspan></text>
+    <text x="73" y="106">R<tspan class="sub">1</tspan></text>
+    <text x="90" y="116">∥</text>
+    <text x="73" y="128">R<tspan class="sub">2</tspan></text>
+    <text x="198" y="39">v<tspan class="sub">gs</tspan></text>
+    <text x="294" y="120">R<tspan class="sub">D</tspan></text>
+    <text x="359" y="154">g<tspan class="sub">m</tspan></text>
+    <text x="381" y="154">v<tspan class="sub">gs</tspan></text>
+    <text x="446" y="39">v<tspan class="sub">o</tspan></text>
+    <text x="458" y="79">+</text>
+    <text x="458" y="169">−</text>
+  </g>
+</svg>

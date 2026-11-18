@@ -3,25 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="模拟电子技术作业逐题复习，查看题图、解题步骤和参考答案。">
+  <meta name="description" content="模拟电子技术五次作业与阶段测试，查看题图、解题步骤和参考答案。">
   <meta name="color-scheme" content="light">
-  <title>模电复习 · 五次作业</title>
-  <link rel="stylesheet" href="style.css?v=20261118">
-  <script src="questions.js" defer></script>
-  <script src="solutions.js" defer></script>
-  <script src="app.js?v=20261118" defer></script>
+  <title>模电复习 · 五次作业与阶段测试</title>
+  <link rel="stylesheet" href="style.css?v=20261118-diagrams">
+  <script src="questions.js?v=20261118-stage" defer></script>
+  <script src="solutions.js?v=20261118-diagrams" defer></script>
+  <script src="stage.js?v=20261118-stage" defer></script>
+  <script src="app.js?v=20261118-diagrams" defer></script>
 </head>
-<body>
+<body class="analog-review">
   <a class="skip" href="#problem">跳到题目</a>
   <header class="topbar">
-    <div class="brand"><span class="brand-icon" aria-hidden="true">∿</span><div><strong>模电复习</strong><small>五次作业 · 逐题练习</small></div></div>
-    <div class="top-right"><span id="top-progress">已掌握 0 / 19</span><span class="top-separator"></span><a href="/">返回 Xv Yan</a></div>
+    <div class="brand"><span class="brand-icon" aria-hidden="true">∿</span><div><strong>模电复习</strong><small>五次作业 · 阶段测试</small></div></div>
+    <div class="top-right"><span id="top-progress">已掌握 0 / 27</span><span class="top-separator"></span><a href="/">返回 Xv Yan</a></div>
   </header>
   <div class="layout">
-    <aside class="sidebar" aria-label="作业目录">
-      <div class="side-heading"><span>作业目录</span><span id="side-total">19 道题</span></div>
+    <aside class="sidebar" aria-label="复习目录">
+      <div class="side-heading"><span>复习目录</span><span id="side-total">27 道题</span></div>
       <div id="navigation" class="nav-groups"></div>
-      <div class="side-footer"><span class="progress-label">复习进度 <strong id="progress-count">0 / 19</strong></span><div class="progress-track"><span id="progress-bar"></span></div><small>标记“已掌握”后自动记录</small></div>
+      <div class="side-footer"><span class="progress-label">复习进度 <strong id="progress-count">0 / 27</strong></span><div class="progress-track"><span id="progress-bar"></span></div><small>标记“已掌握”后自动记录</small></div>
     </aside>
     <main id="problem" tabindex="-1">
       <div class="mobile-nav"><label for="question-select">选择题目</label><select id="question-select"></select></div>
@@ -29,25 +30,25 @@
         <div class="breadcrumb" id="breadcrumb"></div>
         <div class="title-line"><div><h1 id="question-title"></h1><p id="question-subtitle"></p></div><span class="counter" id="counter"></span></div>
         <section class="paper" aria-labelledby="problem-title">
-          <div class="section-label"><span class="section-number">01</span><h2 id="problem-title">题目</h2><span id="question-kind" class="question-kind"></span></div>
+          <div class="section-label"><h2 id="problem-title">题目</h2><span id="question-kind" class="question-kind"></span></div>
           <div id="question-body" class="question-body"></div>
-          <figure id="circuit-figure" class="circuit-figure" hidden><img id="circuit" src="images/26.png" alt="题目电路图"><figcaption id="circuit-caption"></figcaption><button class="enlarge" id="enlarge" type="button">放大查看题图 ↗</button></figure>
+          <figure id="circuit-figure" class="circuit-figure" hidden><img id="circuit" src="images/26.svg" alt="题目电路图"><figcaption id="circuit-caption"></figcaption><button class="enlarge" id="enlarge" type="button">放大查看题图 ↗</button></figure>
           <div id="options" class="options"></div>
-          <div class="mobile-key"><strong>这一题的关键</strong><span id="mobile-key-text"></span></div>
-          <div class="paper-bottom"><span>先自己想一想，再展开解答</span><button class="answer-toggle" id="show-answer" type="button" aria-expanded="false" aria-controls="solution">查看解答 <span aria-hidden="true">↗</span></button></div>
+          <details class="question-hint" id="question-hint"><summary>看提示</summary><p id="key-point"></p></details>
+          <div class="paper-bottom"><button class="answer-toggle" id="show-answer" type="button" aria-expanded="false" aria-controls="solution">查看解答 <span aria-hidden="true">↗</span></button></div>
         </section>
         <section id="solution" class="solution" hidden aria-labelledby="solution-title">
-          <div class="section-label"><span class="section-number">02</span><h2 id="solution-title">解题过程</h2><span class="answer-source" id="answer-source"></span></div>
+          <div class="section-label"><h2 id="solution-title">参考解答</h2><span class="answer-source" id="answer-source"></span></div>
+          <div class="takeaway"><span>结论</span><div id="result"></div></div>
+          <p class="process-title">推导过程</p>
           <div id="steps" class="steps"></div>
-          <figure id="answer-figure" class="answer-figure" hidden><img id="answer-image" src="images/wave.png" alt="输出波形示意"><figcaption>输出波形示意</figcaption></figure>
-          <div class="takeaway"><span>答案</span><div id="result"></div></div>
+          <figure id="answer-figure" class="answer-figure" hidden><img id="answer-image" src="images/wave.svg" alt="输出波形示意"><figcaption>输出波形示意</figcaption></figure>
           <div class="master-row"><div><strong>这道题会了吗？</strong><small>理解思路后，可以标记为已掌握。</small></div><button id="mastered" class="master-button" type="button" aria-pressed="false">标记为已掌握</button></div>
         </section>
         <div class="pager"><button id="previous" type="button">← <span>上一题</span></button><span id="pager-label"></span><button id="next" type="button"><span>下一题</span> →</button></div>
-        <footer>根据教材照片与学习通作业整理 · 曲线为重绘示意</footer>
+        <footer>根据教材、学习通作业与阶段测试整理 · 阶段测试答案为独立推导</footer>
       </div>
     </main>
-    <aside class="note-rail" aria-label="学习提示"><div class="rail-content"><span class="rail-symbol">✳</span><h2>把思路写出来</h2><p>先判断电路状态，再列方程。计算结果需要带单位，也要记得检查工作条件。</p><div class="rail-rule"></div><span class="rail-title">这一题的关键</span><p id="key-point"></p></div></aside>
   </div>
   <dialog id="image-dialog" class="image-dialog" aria-labelledby="image-dialog-title">
     <div class="dialog-header">
@@ -57,7 +58,7 @@
         <button id="close-dialog" type="button" aria-label="关闭图片">关闭 ×</button>
       </div>
     </div>
-    <div class="image-scroll" tabindex="0" role="region" aria-label="图片浏览区"><img id="large-image" src="images/26.png" alt="题图"></div>
+    <div class="image-scroll" tabindex="0" role="region" aria-label="图片浏览区"><img id="large-image" src="images/26.svg" alt="题图"></div>
     <p id="image-hint" hidden>滑动图片查看细节</p>
   </dialog>
   <noscript>请在浏览器中启用 JavaScript 以查看题目和解答。</noscript>

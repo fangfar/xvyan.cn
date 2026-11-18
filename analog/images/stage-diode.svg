@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 236 210" role="img" aria-labelledby="title">
+  <title id="title">简答 1：理想二极管电路</title>
+  <style>.wire{fill:none;stroke:#172530;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.dot{fill:#172530;stroke:none}.terminal{fill:#fff}.label{fill:#172530;font:italic 17px Cambria,Georgia,serif}.sub{font-size:72%;baseline-shift:sub}</style>
+  <g class="wire">
+    <path d="M38 27H78 M97 27H208 M78 17L96 27L78 37Z M97 17V37 M38 27V106 M29 106H47 M24 114H52 M38 114V181H208 M146 27V55 M146 103V143 M137 143H155 M132 151H160 M146 151V181"/>
+    <rect x="138" y="55" width="16" height="48"/>
+    <circle class="dot" cx="146" cy="27" r="3"/>
+    <circle class="dot" cx="146" cy="181" r="3"/>
+    <circle class="dot" cx="208" cy="27" r="3"/>
+    <circle class="dot" cx="208" cy="181" r="3"/>
+  </g>
+  <g class="label">
+    <text x="78" y="55">D</text>
+    <text x="58" y="118">3 V</text>
+    <text x="91" y="89">3 kΩ</text>
+    <text x="100" y="155">9 V</text>
+    <text x="185" y="52">+</text>
+    <text x="184" y="111">U<tspan class="sub">o</tspan></text>
+    <text x="185" y="172">−</text>
+  </g>
+</svg>

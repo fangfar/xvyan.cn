@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510 261" role="img" aria-labelledby="title">
+  <title id="title">差动放大器左侧半电路</title>
+  <style>.wire{fill:none;stroke:#172530;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.dot{fill:#172530;stroke:none}.terminal{fill:#fff}.label{fill:#172530;font:italic 17px Cambria,Georgia,serif}.sub{font-size:72%;baseline-shift:sub}</style>
+  <g class="wire">
+    <path d="M55 78H89 M123 78H158 M158 78V108 M158 144V172H219 M219 172V190 M219 224V237 M326 78H439 M326 78V67 M326 31V16 M316 16H336 M389 78V105 M389 141V172H219"/>
+    <rect x="89" y="72" width="34" height="12"/>
+    <rect x="152" y="108" width="12" height="36"/>
+    <rect x="320" y="31" width="12" height="36"/>
+    <rect x="213" y="190" width="12" height="34"/>
+    <path d="M389 105L407 123L389 141L371 123Z M389 114V132 M385 128L389 132L393 128 M133 65H149 M144 62L149 65L144 68"/>
+    <path d="M219 237v10m-10 0h20"/>
+    <circle class="terminal" cx="55" cy="78" r="3.2"/>
+    <circle class="terminal" cx="439" cy="78" r="3.2"/>
+    <circle class="dot" cx="326" cy="78" r="3"/>
+    <circle class="dot" cx="219" cy="172" r="3"/>
+  </g>
+  <g class="label">
+    <text x="12" y="83">v<tspan class="sub">ih</tspan></text>
+    <text x="94" y="58">R<tspan class="sub">b</tspan></text>
+    <text x="131" y="53">i<tspan class="sub">b</tspan></text>
+    <text x="172" y="132">r<tspan class="sub">be</tspan></text>
+    <text x="340" y="53">R<tspan class="sub">C</tspan></text>
+    <text x="407" y="152">βi<tspan class="sub">b</tspan></text>
+    <text x="447" y="83">v<tspan class="sub">o</tspan></text>
+    <text x="233" y="211">Z<tspan class="sub">E</tspan></text>
+  </g>
+</svg>
