@@ -10,6 +10,33 @@
 .equation { white-space: normal; overflow-wrap: anywhere; }
 .frac { max-width: 100%; }
 .takeaway div { min-width: 0; overflow-wrap: anywhere; }
+[data-review-key] .option { display: flex; gap: 4px; align-items: baseline; min-width: 0; }
+[data-review-key] .option > div { min-width: 0; }
+[data-review-key] .option-letter { flex: 0 0 20px; color: #697974; }
+[data-review-key] .layout { grid-template-columns: 248px minmax(0,1fr); }
+[data-review-key] .nav-heading { cursor: pointer; }
+[data-review-key] .question-body img,
+[data-review-key] .options img,
+[data-review-key] .solution img { max-width: 100%; height: auto; vertical-align: middle; }
+[data-review-key] .option p,
+[data-review-key] .takeaway p { margin: 0 0 8px; }
+[data-review-key] .option p:last-child,
+[data-review-key] .takeaway p:last-child { margin-bottom: 0; }
+.image-button {
+  display: inline-block;
+  max-width: 100%;
+  padding: 0;
+  background: white;
+  border: 0;
+  cursor: zoom-in;
+}
+[data-review-key] .takeaway { display: block; overflow-x: auto; }
+[data-review-key] .takeaway > span { display: block; margin-bottom: 6px; }
+[data-review-key] .question-body, [data-review-key] .step-copy { overflow-wrap: anywhere; }
+
+@media (min-width: 701px) {
+  [data-review-key] .solution { scroll-margin-top: 84px; }
+}
 .table-wrap { overscroll-behavior-inline: contain; }
 
 html:has(.image-dialog[open]) { overflow: hidden; }

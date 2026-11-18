@@ -1,6 +1,7 @@
 const all=groups.flatMap((group,groupIndex)=>group.items.map((item,index)=>({...item,groupIndex,index})));
 const $=id=>document.getElementById(id);
-const storeKey='analog-review-mastered-v1';
+const reviewKey=document.body.dataset.reviewKey;
+const storeKey=reviewKey||'analog-review-mastered-v1';
 let mastered=new Set();
 try { const saved=JSON.parse(localStorage.getItem(storeKey)||'[]'); if(Array.isArray(saved)) mastered=new Set(saved.filter(id=>all.some(q=>q.id===id))); } catch (_) { /* Reading remains available when storage is blocked. */ }
 let current=0;
@@ -21,8 +22,8 @@ function writeProgress(){
 function buildNav(){
  const nav=$('navigation'),select=$('question-select');
  groups.forEach(g=>{
-  const section=document.createElement('div'); section.className='nav-group';
-  const heading=document.createElement('div'); heading.className='nav-heading'; heading.textContent=`${g.title}  ${g.topic}`; section.append(heading);
+  const section=document.createElement(reviewKey?'details':'div'); section.className='nav-group';
+  const heading=document.createElement(reviewKey?'summary':'div'); heading.className='nav-heading'; heading.textContent=`${g.title}  ${g.topic}`; section.append(heading);
   const items=document.createElement('div'); items.className='nav-items';
   const optgroup=document.createElement('optgroup'); optgroup.label=`${g.title} · ${g.topic}`;
   g.items.forEach(q=>{
@@ -43,15 +44,26 @@ function go(index){
  $('question-title').textContent=q.title;
  $('question-subtitle').textContent=`${g.title} · ${g.topic}`;
  $('question-kind').textContent=q.kind;
- $('question-body').innerHTML=`<p>${q.description}</p>`;
+ $('question-body').innerHTML=q.body??`<p>${q.description}</p>`;
  $('counter').textContent=`${String(current+1).padStart(2,'0')} / ${String(all.length).padStart(2,'0')}`;
- $('key-point').textContent=q.key;
- $('mobile-key-text').textContent=q.key;
+ if(q.key){
+  $('key-point').textContent=q.key;
+  $('mobile-key-text').textContent=q.key;
+ }
  $('question-select').value=String(current);
- const fig=$('circuit-figure');fig.hidden=!q.image;
+ const fig=$('circuit-figure');if(fig)fig.hidden=!q.image;
  if(q.image){ const vector=['26','27','28','210','36','37','39','bjt','mos','diff','curve1','curve2'].includes(q.image); $('circuit').src=`images/${q.image}.${vector?'svg':'png'}?v=20261116-2`; $('circuit').alt=`${q.title}的重绘${q.id==='4-1'||q.id==='4-2'?'特性曲线':'电路图'}`; $('circuit-caption').textContent=q.id==='4-1'||q.id==='4-2'?'重绘特性曲线 · 示意':'按原题重绘'; }
  const options=$('options');options.replaceChildren();
- (q.options||[]).forEach((option,i)=>{const row=document.createElement('div');row.className='option';const b=document.createElement('b');b.textContent=String.fromCharCode(65+i)+'.';row.append(b,document.createTextNode(option));options.append(row)});
+ (q.options||[]).forEach((option,i)=>{
+  const row=document.createElement('div');row.className='option';
+  const label=document.createElement('b');label.className='option-letter';label.textContent=String.fromCharCode(65+i)+'.';
+  if(reviewKey){
+   const content=document.createElement('div');
+   content.innerHTML=option;
+   row.append(label,content);
+  }else row.append(label,document.createTextNode(option));
+  options.append(row);
+ });
  $('steps').replaceChildren();q.steps.forEach((item,i)=>{const el=document.createElement('article');el.className='step';el.innerHTML=`<span class="step-index">${String(i+1).padStart(2,'0')}</span><div class="step-content"><h3>${item.title}</h3><div class="step-copy">${item.body}</div></div>`;$('steps').append(el)});
  document.querySelectorAll('.worked-figure, #answer-figure').forEach(figure=>{
   if (figure.querySelector('button')) return;
@@ -63,12 +75,27 @@ function go(index){
   figure.append(button);
  });
  $('result').innerHTML=q.result;$('answer-source').textContent=q.source||'独立推导';
- const answerFig=$('answer-figure');answerFig.hidden=!q.answerImage;
+ if(reviewKey){
+  document.querySelectorAll('#question-body img:not(.formula), #options img:not(.formula), #steps img:not(.formula), #result img:not(.formula)').forEach(img=>{
+   if(img.closest('.worked-figure')) return;
+   const button=document.createElement('button');
+   button.type='button';button.className='image-button';
+   button.setAttribute('aria-label',`放大查看${img.alt}`);
+   button.addEventListener('click',()=>openImage(img));
+   img.replaceWith(button);button.append(img);
+  });
+ }
+ const answerFig=$('answer-figure');if(answerFig)answerFig.hidden=!q.answerImage;
  if(q.answerImage){$('answer-image').src=`images/${q.answerImage}.png`;$('answer-image').alt='稳压管输出限幅波形，标出上下限电压'}
  $('solution').hidden=true;$('show-answer').setAttribute('aria-expanded','false');$('show-answer').innerHTML='查看解答 <span aria-hidden="true">↗</span>';
  $('previous').disabled=current===0;$('next').disabled=current===all.length-1;
  $('pager-label').textContent=`${current+1} / ${all.length}`;
- document.querySelectorAll('.nav-item').forEach(btn=>{if(btn.dataset.id===q.id)btn.setAttribute('aria-current','page');else btn.removeAttribute('aria-current')});
+ document.querySelectorAll('.nav-item').forEach(btn=>{
+  if(btn.dataset.id===q.id){
+   btn.setAttribute('aria-current','page');
+   if(reviewKey) btn.closest('details').open=true;
+  }else btn.removeAttribute('aria-current');
+ });
  writeProgress();window.scrollTo({top:0,behavior:'auto'});
 }
 $('show-answer').addEventListener('click',()=>{
@@ -101,7 +128,7 @@ function openImage(source){
  setZoom(false);
 }
 
-$('enlarge').addEventListener('click',()=>openImage($('circuit')));
+$('enlarge')?.addEventListener('click',()=>openImage($('circuit')));
 zoomButton.addEventListener('click',()=>setZoom(zoomButton.getAttribute('aria-pressed')==='false'));
 $('close-dialog').addEventListener('click',()=>imageDialog.close());
 buildNav();go(0);

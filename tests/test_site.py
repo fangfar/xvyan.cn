@@ -63,7 +63,7 @@ class SiteTests(unittest.TestCase):
                         self.assertIn(unquote(url.fragment), target_doc.ids)
 
     def test_page_structure_and_no_external_runtime_dependencies(self):
-        self.assertEqual(len(self.pages), 6)
+        self.assertEqual(len(self.pages), 7)
         for path, doc in self.pages.items():
             with self.subTest(page=str(path)):
                 self.assertEqual(sum(tag == "h1" for tag, _ in doc.tags), 1)
@@ -77,6 +77,10 @@ class SiteTests(unittest.TestCase):
                     self.assertTrue(all("defer" in s for s in scripts))
                     self.assertTrue((site.OUT / "analog/images/mos.svg").is_file())
                     self.assertTrue((site.OUT / "analog/images/37.svg").is_file())
+                    continue
+                if path == site.OUT / "circuit/index.html":
+                    self.assertEqual([urlsplit(s["src"]).path for s in scripts], ["questions.js", "../analog/app.js"])
+                    self.assertTrue(all("defer" in s for s in scripts))
                     continue
                 self.assertTrue(scripts[0]["src"].split("?")[0].endswith("assets/theme.js"))
                 if path == site.OUT / "index.html":
@@ -97,7 +101,7 @@ class SiteTests(unittest.TestCase):
         home = self.pages[site.OUT / "index.html"]
         self.assertFalse(any(tag == "img" for tag, _ in home.tags))
         for path, doc in self.pages.items():
-            if path == site.OUT / "analog/index.html":
+            if path in (site.OUT / "analog/index.html", site.OUT / "circuit/index.html"):
                 continue
             buttons = [a for t, a in doc.tags if t == "button" and a.get("class") == "theme-toggle"]
             self.assertEqual(len(buttons), 1)
@@ -106,6 +110,31 @@ class SiteTests(unittest.TestCase):
         self.assertFalse(any("data-reveal" in a for _, a in home.tags))
         script = (site.OUT / "assets/motion.js").read_text(encoding="utf-8")
         self.assertNotIn("IntersectionObserver", script)
+
+    def test_circuit_review_answers_and_images(self):
+        folder = site.OUT / "circuit"
+        script = (folder / "questions.js").read_text(encoding="utf-8")
+        groups = json.loads(script.removeprefix("const groups = ").strip().removesuffix(";"))
+        self.assertEqual([len(group["items"]) for group in groups], [13, 13, 14, 13, 21, 10, 13, 12, 14, 10])
+        seen = set()
+        source_counts = {}
+        for week, group in enumerate(groups, 1):
+            for number, question in enumerate(group["items"], 1):
+                with self.subTest(question=question["id"]):
+                    self.assertEqual(question["id"], f"{week}-{number}")
+                    self.assertTrue(question["body"] and question["result"])
+                    if question["kind"] == "单选题":
+                        self.assertEqual(len(question["options"]), 4)
+                    source = question["source"]
+                    source_counts[source] = source_counts.get(source, 0) + 1
+                    markup = [question["body"], question["result"], *question["options"]]
+                    markup.extend(step["body"] for step in question["steps"])
+                    for link in Document("".join(markup)).links:
+                        self.assertRegex(link, r"^images/([a-f0-9]{20}|phasors-9-1[234])\.(png|jpg)$")
+                        self.assertTrue((folder / link).is_file(), link)
+                        seen.add(link)
+        self.assertEqual(source_counts, {"学习通正确答案": 90, "学习通答案解析": 6, "独立推导 · 待学习通核对": 37})
+        self.assertEqual(seen, {p.relative_to(folder).as_posix() for p in (folder / "images").iterdir()})
 
     def test_articles_are_removed_from_build(self):
         home = self.pages[site.OUT / "index.html"]
@@ -203,7 +232,7 @@ class SiteTests(unittest.TestCase):
     def test_original_photo_and_design_are_not_deployed(self):
         self.assertFalse((site.OUT / "design").exists())
         self.assertFalse((site.OUT / "content").exists())
-        self.assertFalse(list(site.OUT.rglob("*.jpg")))
+        self.assertFalse([p for p in site.OUT.rglob("*.jpg") if p.parent != site.OUT / "circuit/images"])
         self.assertFalse((site.OUT / "assets/avatar.webp").exists())
         for doc in self.pages.values():
             for tag, attrs in doc.tags:
