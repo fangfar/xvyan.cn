@@ -53,6 +53,15 @@ function go(index){
  const options=$('options');options.replaceChildren();
  (q.options||[]).forEach((option,i)=>{const row=document.createElement('div');row.className='option';const b=document.createElement('b');b.textContent=String.fromCharCode(65+i)+'.';row.append(b,document.createTextNode(option));options.append(row)});
  $('steps').replaceChildren();q.steps.forEach((item,i)=>{const el=document.createElement('article');el.className='step';el.innerHTML=`<span class="step-index">${String(i+1).padStart(2,'0')}</span><div class="step-content"><h3>${item.title}</h3><div class="step-copy">${item.body}</div></div>`;$('steps').append(el)});
+ document.querySelectorAll('.worked-figure, #answer-figure').forEach(figure=>{
+  if (figure.querySelector('button')) return;
+  const button=document.createElement('button');
+  button.type='button';
+  button.className='enlarge';
+  button.textContent='放大查看解答图 ↗';
+  button.addEventListener('click',()=>openImage(figure.querySelector('img')));
+  figure.append(button);
+ });
  $('result').innerHTML=q.result;$('answer-source').textContent=q.source||'独立推导';
  const answerFig=$('answer-figure');answerFig.hidden=!q.answerImage;
  if(q.answerImage){$('answer-image').src=`images/${q.answerImage}.png`;$('answer-image').alt='稳压管输出限幅波形，标出上下限电压'}
@@ -73,6 +82,26 @@ $('mastered').addEventListener('click',()=>{
  writeProgress();
 });
 $('previous').addEventListener('click',()=>go(current-1));$('next').addEventListener('click',()=>go(current+1));
-$('enlarge').addEventListener('click',()=>{ $('large-image').src=$('circuit').src;$('large-image').alt=$('circuit').alt;$('image-dialog').showModal(); });
-$('close-dialog').addEventListener('click',()=>$('image-dialog').close());
+const imageDialog=$('image-dialog');
+const imageScroll=imageDialog.querySelector('.image-scroll');
+const zoomButton=$('zoom-image');
+
+function setZoom(zoomed){
+ imageDialog.classList.toggle('is-zoomed',zoomed);
+ zoomButton.setAttribute('aria-pressed',String(zoomed));
+ zoomButton.textContent=zoomed?'适应屏幕':'放大细节';
+ $('image-hint').hidden=!zoomed;
+ imageScroll.scrollTo(0,0);
+}
+
+function openImage(source){
+ $('large-image').src=source.src;
+ $('large-image').alt=source.alt;
+ imageDialog.showModal();
+ setZoom(false);
+}
+
+$('enlarge').addEventListener('click',()=>openImage($('circuit')));
+zoomButton.addEventListener('click',()=>setZoom(zoomButton.getAttribute('aria-pressed')==='false'));
+$('close-dialog').addEventListener('click',()=>imageDialog.close());
 buildNav();go(0);

@@ -2,14 +2,14 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="模拟电子技术作业逐题复习，查看题图、解题步骤和参考答案。">
   <meta name="color-scheme" content="light">
   <title>模电复习 · 五次作业</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20261118">
   <script src="questions.js" defer></script>
   <script src="solutions.js" defer></script>
-  <script src="app.js?v=20261116-2" defer></script>
+  <script src="app.js?v=20261118" defer></script>
 </head>
 <body>
   <a class="skip" href="#problem">跳到题目</a>
@@ -49,7 +49,17 @@
     </main>
     <aside class="note-rail" aria-label="学习提示"><div class="rail-content"><span class="rail-symbol">✳</span><h2>把思路写出来</h2><p>先判断电路状态，再列方程。计算结果需要带单位，也要记得检查工作条件。</p><div class="rail-rule"></div><span class="rail-title">这一题的关键</span><p id="key-point"></p></div></aside>
   </div>
-  <dialog id="image-dialog" class="image-dialog" aria-labelledby="image-dialog-title"><div class="dialog-header"><strong id="image-dialog-title">题图</strong><button id="close-dialog" type="button" aria-label="关闭题图">关闭 ×</button></div><div class="image-scroll"><img id="large-image" src="images/26.png" alt="放大的题目电路图"></div><p>可横向滚动查看完整题图</p></dialog>
+  <dialog id="image-dialog" class="image-dialog" aria-labelledby="image-dialog-title">
+    <div class="dialog-header">
+      <strong id="image-dialog-title">查看图片</strong>
+      <div class="dialog-actions">
+        <button id="zoom-image" type="button" aria-pressed="false">放大细节</button>
+        <button id="close-dialog" type="button" aria-label="关闭图片">关闭 ×</button>
+      </div>
+    </div>
+    <div class="image-scroll" tabindex="0" role="region" aria-label="图片浏览区"><img id="large-image" src="images/26.png" alt="题图"></div>
+    <p id="image-hint" hidden>滑动图片查看细节</p>
+  </dialog>
   <noscript>请在浏览器中启用 JavaScript 以查看题目和解答。</noscript>
 </body>
 </html>
