@@ -28,8 +28,8 @@ function buildNav(){
   const optgroup=document.createElement('optgroup'); optgroup.label=`${g.title} · ${g.topic}`;
   g.items.forEach(q=>{
    const index=all.findIndex(x=>x.id===q.id); const button=document.createElement('button'); button.type='button'; button.className='nav-item'; button.dataset.id=q.id;
-   const code=document.createElement('span');code.className='nav-code';code.textContent=q.id.includes('-')?q.id.split('-')[1].padStart(2,'0'):q.id;
-   const label=document.createElement('span');label.textContent=q.title.replace(/^(第\s*\d+\s*题|\d+\.\d+)\s*/, '');
+   const code=document.createElement('span');code.className='nav-code';code.textContent=q.navNumber??(q.id.includes('-')?q.id.split('-')[1].padStart(2,'0'):q.id);
+   const label=document.createElement('span');label.textContent=q.title.replace(/^(第\s*\d+\s*题|简答\s*\d+|\d+\.\d+)\s*/, '');
    const check=document.createElement('span');check.className='nav-check';check.setAttribute('aria-hidden','true');button.append(code,label,check);button.addEventListener('click',()=>go(index));items.append(button);
    const option=document.createElement('option');option.value=String(index);option.textContent=q.title;optgroup.append(option);
   });
@@ -40,7 +40,8 @@ function buildNav(){
 function go(index){
  if(index<0||index>=all.length)return;
  current=index;const q=all[current],g=groups[q.groupIndex];
- $('breadcrumb').innerHTML=`复习目录　/　${g.title}　/　<b>${g.topic}</b>`;
+ const breadcrumb=$('breadcrumb');
+ if(breadcrumb) breadcrumb.innerHTML=`复习目录　/　${g.title}　/　<b>${g.topic}</b>`;
  $('question-title').textContent=q.title;
  $('question-subtitle').textContent=`${g.title} · ${g.topic}`;
  $('question-kind').textContent=q.kind;
@@ -50,11 +51,15 @@ function go(index){
  if(hint){ hint.open=false; hint.hidden=!q.key; $('key-point').textContent=q.key||''; }
  $('question-select').value=String(current);
  const fig=$('circuit-figure');if(fig)fig.hidden=!q.image;
- if(q.image){ const curve=q.id==='4-1'||q.id==='4-2'; $('circuit').src=`images/${q.image}.svg?v=20261118-diagrams`; $('circuit').alt=`${q.title}的${curve?'特性曲线':'电路图'}`; $('circuit-caption').textContent=curve?'重绘特性曲线 · 示意':'按原题重绘'; }
+ if(q.image){
+  const type=q.id==='4-1'||q.id==='4-2'?'特性曲线':q.id==='4-3'?'器件符号':'电路图';
+  $('circuit').src=`images/${q.image}?v=20261119-review`;
+  $('circuit').alt=`${q.title}的${type}`;
+ }
  const options=$('options');options.replaceChildren();
  (q.options||[]).forEach((option,i)=>{
   const row=document.createElement('div');row.className='option';
-  const label=document.createElement('b');label.className='option-letter';label.textContent=String.fromCharCode(65+i)+'.';
+  const label=document.createElement('b');label.className='option-letter';label.textContent=(q.optionLabels?.[i]??String.fromCharCode(65+i))+'.';
   if(reviewKey){
    const content=document.createElement('div');
    content.innerHTML=option;
@@ -92,7 +97,7 @@ function go(index){
   });
  }
  const answerFig=$('answer-figure');if(answerFig)answerFig.hidden=!q.answerImage;
- if(q.answerImage){$('answer-image').src=`images/${q.answerImage}.svg?v=20261118-diagrams`;$('answer-image').alt='稳压管输出限幅波形，标出上下限电压'}
+ if(q.answerImage){$('answer-image').src=`images/${q.answerImage}?v=20261119-review`;$('answer-image').alt='稳压管输出限幅波形，标出上下限电压'}
  $('solution').hidden=true;$('show-answer').setAttribute('aria-expanded','false');$('show-answer').innerHTML='查看解答 <span aria-hidden="true">↗</span>';
  $('previous').disabled=current===0;$('next').disabled=current===all.length-1;
  $('pager-label').textContent=`${current+1} / ${all.length}`;

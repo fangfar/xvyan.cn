@@ -82,8 +82,10 @@ def write(path, content):
 def build():
     stars = load_stars()
     OUT.mkdir(exist_ok=True)
-    if (OUT / "articles").exists():
-        shutil.rmtree(OUT / "articles")
+    for directory in ("articles", "analog"):
+        target = OUT / directory
+        if target.exists():
+            shutil.rmtree(target)
     shutil.copytree(ROOT / "assets", OUT / "assets", dirs_exist_ok=True)
     shutil.copytree(ROOT / "analog", OUT / "analog", dirs_exist_ok=True)
     shutil.copytree(ROOT / "circuit", OUT / "circuit", dirs_exist_ok=True)

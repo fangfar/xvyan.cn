@@ -6,11 +6,10 @@
   <meta name="description" content="模拟电子技术五次作业与阶段测试，查看题图、解题步骤和参考答案。">
   <meta name="color-scheme" content="light">
   <title>模电复习 · 五次作业与阶段测试</title>
-  <link rel="stylesheet" href="style.css?v=20261118-diagrams">
-  <script src="questions.js?v=20261118-stage" defer></script>
-  <script src="solutions.js?v=20261118-diagrams" defer></script>
-  <script src="stage.js?v=20261118-stage" defer></script>
-  <script src="app.js?v=20261118-diagrams" defer></script>
+  <link rel="stylesheet" href="style.css?v=20261119-review">
+  <script src="questions.js?v=20261119-review" defer></script>
+  <script src="stage.js?v=20261119-review" defer></script>
+  <script src="app.js?v=20261119-review" defer></script>
 </head>
 <body class="analog-review">
   <a class="skip" href="#problem">跳到题目</a>
@@ -27,12 +26,11 @@
     <main id="problem" tabindex="-1">
       <div class="mobile-nav"><label for="question-select">选择题目</label><select id="question-select"></select></div>
       <div class="reading">
-        <div class="breadcrumb" id="breadcrumb"></div>
         <div class="title-line"><div><h1 id="question-title"></h1><p id="question-subtitle"></p></div><span class="counter" id="counter"></span></div>
         <section class="paper" aria-labelledby="problem-title">
           <div class="section-label"><h2 id="problem-title">题目</h2><span id="question-kind" class="question-kind"></span></div>
           <div id="question-body" class="question-body"></div>
-          <figure id="circuit-figure" class="circuit-figure" hidden><img id="circuit" src="images/26.svg" alt="题目电路图"><figcaption id="circuit-caption"></figcaption><button class="enlarge" id="enlarge" type="button">放大查看题图 ↗</button></figure>
+          <figure id="circuit-figure" class="circuit-figure" hidden><img id="circuit" src="images/26.webp?v=20261119-review" alt="题目电路图"><button class="enlarge" id="enlarge" type="button">放大查看题图 ↗</button></figure>
           <div id="options" class="options"></div>
           <details class="question-hint" id="question-hint"><summary>看提示</summary><p id="key-point"></p></details>
           <div class="paper-bottom"><button class="answer-toggle" id="show-answer" type="button" aria-expanded="false" aria-controls="solution">查看解答 <span aria-hidden="true">↗</span></button></div>
@@ -42,7 +40,7 @@
           <div class="takeaway"><span>结论</span><div id="result"></div></div>
           <p class="process-title">推导过程</p>
           <div id="steps" class="steps"></div>
-          <figure id="answer-figure" class="answer-figure" hidden><img id="answer-image" src="images/wave.svg" alt="输出波形示意"><figcaption>输出波形示意</figcaption></figure>
+          <figure id="answer-figure" class="answer-figure" hidden><img id="answer-image" src="images/wave.svg?v=20261119-review" alt="输出波形示意"><figcaption>输出波形示意</figcaption></figure>
           <div class="master-row"><div><strong>这道题会了吗？</strong><small>理解思路后，可以标记为已掌握。</small></div><button id="mastered" class="master-button" type="button" aria-pressed="false">标记为已掌握</button></div>
         </section>
         <div class="pager"><button id="previous" type="button">← <span>上一题</span></button><span id="pager-label"></span><button id="next" type="button"><span>下一题</span> →</button></div>
@@ -58,7 +56,7 @@
         <button id="close-dialog" type="button" aria-label="关闭图片">关闭 ×</button>
       </div>
     </div>
-    <div class="image-scroll" tabindex="0" role="region" aria-label="图片浏览区"><img id="large-image" src="images/26.svg" alt="题图"></div>
+    <div class="image-scroll" tabindex="0" role="region" aria-label="图片浏览区"><img id="large-image" src="images/26.webp?v=20261119-review" alt="题图"></div>
     <p id="image-hint" hidden>滑动图片查看细节</p>
   </dialog>
   <noscript>请在浏览器中启用 JavaScript 以查看题目和解答。</noscript>

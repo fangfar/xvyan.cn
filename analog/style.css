@@ -22,6 +22,7 @@
   overflow-wrap: anywhere;
 }
 .analog-review .options:empty { display: none; }
+.analog-review .option b { width: 2.4em; }
 .analog-review .nav-heading, .question-hint summary { cursor: pointer; }
 .question-hint { margin-top: 18px; color: #375e51; }
 .question-hint summary { width: fit-content; padding: 10px 0; }

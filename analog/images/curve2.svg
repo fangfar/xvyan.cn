@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="56 7 623 465" role="img" aria-labelledby="title">
-<title id="title">N 沟道耗尽型 MOSFET 的转移特性示意图</title>
-<g fill="none" stroke="#202d34" stroke-width="3" stroke-linecap="round"><path d="M70 410H650 M400 450V55"/><path d="M400 328H390 M400 246H390 M400 164H390 M400 82H390 M130 410V420 M220 410V420 M310 410V420 M400 410V420 M490 410V420 M580 410V420"/></g>
-<g fill="none" stroke="#a2b2b1" stroke-width="2" stroke-dasharray="6 5"><path d="M220 410V369H400 M310 410V315H400 M490 410V164H400"/></g>
-<path d="M130 410 C 165 409, 191 389, 220 369 S 280 335, 310 315 S 370 269, 400 246 S 462 191, 490 164" fill="none" stroke="#416f9a" stroke-width="5"/>
-<g fill="#202d34"><circle cx="220" cy="369" r="5"/><circle cx="310" cy="315" r="5"/><circle cx="400" cy="246" r="5"/><circle cx="490" cy="164" r="5"/></g>
-<g font-family="Arial,sans-serif" fill="#263843" font-size="23"><text x="383" y="42">i<tspan baseline-shift="sub" font-size="16">D</tspan> / mA</text><text x="596" y="446">v<tspan baseline-shift="sub" font-size="16">GS</tspan> / V</text><text x="112" y="447">−6</text><text x="204" y="447">−4</text><text x="294" y="447">−2</text><text x="394" y="447">0</text><text x="484" y="447">2</text><text x="574" y="447">4</text><text x="364" y="337">2</text><text x="364" y="255">4</text><text x="364" y="173">6</text><text x="364" y="91">8</text><text x="82" y="389">V<tspan baseline-shift="sub" font-size="16">PN</tspan></text><text x="408" y="240">I<tspan baseline-shift="sub" font-size="16">DSS</tspan></text></g></svg>
