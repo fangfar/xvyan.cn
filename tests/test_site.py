@@ -141,7 +141,7 @@ class SiteTests(unittest.TestCase):
                         seen.add(link)
         self.assertEqual(source_counts, {"学习通正确答案": 90, "学习通答案解析": 6, "独立推导 · 待学习通核对": 53})
         self.assertEqual(typeset_formulas, 294)
-        self.assertEqual(sum(link.endswith(".svg") for link in seen), 9)
+        self.assertEqual(sum(link.endswith(".svg") for link in seen), 10)
         self.assertEqual(seen, {f"images/{p.name}" for p in (ROOT / "circuit/images").iterdir()})
 
     def test_articles_are_removed_from_build(self):

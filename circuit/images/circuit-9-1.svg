@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 205" role="img" aria-labelledby="title">
+  <title id="title">第 1 题电流相量图，以电源电压为零相位</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <g stroke="#8b999d" stroke-width="1" marker-end="url(#arrow)">
+    <path d="M26 129H253"/>
+    <path d="M91 192V12"/>
+  </g>
+  <path d="M191 129V79H91" fill="none" stroke="#748488" stroke-width="1" stroke-dasharray="4 4"/>
+  <g stroke-width="2" marker-end="url(#arrow)">
+    <path d="M91 129H191" stroke="#256245"/>
+    <path d="M91 129V29" stroke="#2568a0"/>
+    <path d="M91 129V179" stroke="#936013"/>
+    <path d="M91 129L191 79" stroke="#a33746"/>
+  </g>
+  <g font-family="Microsoft YaHei, sans-serif" font-size="15" fill="#283e49">
+    <text x="222" y="152">实轴</text>
+    <text x="39" y="22">虚轴</text>
+    <text x="75" y="147">O</text>
+    <text x="148" y="152" fill="#256245">I<tspan baseline-shift="sub" font-size="11">R</tspan></text>
+    <text x="101" y="35" fill="#2568a0">I<tspan baseline-shift="sub" font-size="11">C</tspan></text>
+    <text x="101" y="183" fill="#936013">I<tspan baseline-shift="sub" font-size="11">L</tspan></text>
+    <text x="198" y="77" fill="#a33746">I</text>
+    <text x="267" y="42" fill="#256245">I<tspan baseline-shift="sub" font-size="11">R</tspan> = 10 A</text>
+    <text x="267" y="79" fill="#2568a0">I<tspan baseline-shift="sub" font-size="11">C</tspan> = j10 A</text>
+    <text x="267" y="116" fill="#936013">I<tspan baseline-shift="sub" font-size="11">L</tspan> = −j5 A</text>
+    <text x="267" y="157" fill="#a33746">I = (10 + j5) A</text>
+    <text x="267" y="181" fill="#a33746">|I| ≈ 11.18 A，∠I ≈ 26.57°</text>
+  </g>
+</svg>
