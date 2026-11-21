@@ -115,7 +115,7 @@ class SiteTests(unittest.TestCase):
         folder = site.OUT / "circuit"
         script = (folder / "questions.js").read_text(encoding="utf-8")
         groups = json.loads(script.removeprefix("const groups = ").strip().removesuffix(";"))
-        self.assertEqual([len(group["items"]) for group in groups], [13, 13, 14, 13, 21, 10, 13, 12, 14, 10, 16])
+        self.assertEqual([len(group["items"]) for group in groups], [13, 13, 14, 13, 21, 10, 13, 12, 14, 10, 17])
         seen = set()
         source_counts = {}
         typeset_formulas = 0
@@ -139,9 +139,9 @@ class SiteTests(unittest.TestCase):
                         self.assertRegex(link, r"^images/(?:([a-f0-9]{20}|phasors-9-1[234])\.(png|jpg)|circuit-\d+-\d+\.svg)$")
                         self.assertTrue((folder / link).is_file(), link)
                         seen.add(link)
-        self.assertEqual(source_counts, {"学习通正确答案": 90, "学习通答案解析": 6, "独立推导 · 待学习通核对": 53})
+        self.assertEqual(source_counts, {"学习通正确答案": 90, "学习通答案解析": 6, "独立推导 · 待学习通核对": 54})
         self.assertEqual(typeset_formulas, 294)
-        self.assertEqual(sum(link.endswith(".svg") for link in seen), 10)
+        self.assertEqual(sum(link.endswith(".svg") for link in seen), 11)
         self.assertEqual(seen, {f"images/{p.name}" for p in (ROOT / "circuit/images").iterdir()})
 
     def test_articles_are_removed_from_build(self):

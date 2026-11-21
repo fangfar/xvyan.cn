@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 236" role="img" aria-labelledby="title">
+  <title id="title">第 17 题相量图，以端口电压为零相位</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <g fill="none" stroke="#87989d" marker-end="url(#arrow)">
+    <path d="M27 113H247"/>
+    <path d="M89 219V13"/>
+  </g>
+  <path d="M161 113V209H89" fill="none" stroke="#8b999d" stroke-dasharray="4 4"/>
+  <g fill="none" stroke-width="2.4" marker-end="url(#arrow)">
+    <path d="M89 113H161" stroke="#256245"/>
+    <path d="M89 113V17" stroke="#2568a0"/>
+    <path d="M89 113L161 209" stroke="#a33746"/>
+  </g>
+  <g font-family="Microsoft YaHei, sans-serif" font-size="15" fill="#283e49">
+    <text x="45" y="24">虚轴</text>
+    <text x="218" y="136">实轴</text>
+    <text x="70" y="135">O</text>
+    <text x="143" y="100" fill="#256245">I</text>
+    <text x="100" y="30" fill="#2568a0">I₂</text>
+    <text x="172" y="214" fill="#a33746">I₁</text>
+    <text x="255" y="55">U = 160∠0° V</text>
+    <text x="255" y="91" fill="#256245">I = 6∠0° A</text>
+    <text x="255" y="127" fill="#2568a0">I₂ = j8 A</text>
+    <text x="255" y="163" fill="#a33746">I₁ = (6 − j8) A</text>
+    <text x="255" y="191" fill="#a33746">∠I₁ ≈ −53.13°</text>
+  </g>
+</svg>
